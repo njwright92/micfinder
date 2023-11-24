@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "OpenMicFinder",
-  description: "Find and share open mic events near you",
+  description: "Find open mic events near you",
 };
 
 export default function RootLayout({

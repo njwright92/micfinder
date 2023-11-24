@@ -5,9 +5,11 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-
+venv/
+.vscode/
 # testing
 /coverage
+backend/
 
 # next.js
 /.next/
