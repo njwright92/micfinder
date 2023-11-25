@@ -16,6 +16,12 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .events-card {
+    width: 50%;
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -26,15 +32,220 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+}
+
+p,
+li,
+span,
+div {
+  font-family: "Roboto", "Open Sans", "Lato", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
 .neu-button {
-  border: none;
+  border: 0.1rem solid rgb(255, 255, 255);
   background: rgb(0, 0, 0);
-  box-shadow: 4px 4px 10px rgb(255, 255, 255),
-    -4px -4px 10px rgb(255, 255, 255);
+  color: whitesmoke;
+  border-radius: 3rem;
+  box-shadow: 4px 4px 10px rgb(255, 255, 255), -4px -4px 10px rgb(255, 255, 255);
+  transition: transform 0.3s, box-shadow 0.3s;
+  will-change: transform, box-shadow;
 }
 
 .neu-button:hover {
-  background: rgba(255, 254, 254, 0.334);
-  box-shadow: inset 5px 5px 10px rgba(255, 253, 253, 0.2),
-    inset -5px -5px 10px rgb(255, 255, 255);
+  transform: translateY(-5px);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.neu-button:active {
+  transform: translateY(2px);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.modern-input {
+  border: 0.1rem solid #c0c0c0;
+  padding: 0.3rem;
+  border-radius: 3rem;
+  background-color: #e5e0e0;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  color: black;
+}
+
+.modern-input:focus {
+  outline: none;
+  border-color: #005eff;
+  box-shadow: 2px 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+.modern-input:hover {
+  border-color: #005eff;
+}
+
+.events-card {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: black;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.events-calendar {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  margin-left: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: black;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.event-item {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 0.15rem solid #005eff;
+}
+
+.event-item h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 0.25rem;
+}
+
+.event-item p {
+  font-size: 0.875rem;
+  color: #2f4f4f;
+  margin-bottom: 0.5rem;
+}
+
+.event-item .details {
+  font-size: 0.875rem;
+  color: #395756;
+  vertical-align: middle;
+}
+
+.event-item h3::before {
+  content: "🎤 ";
+  font-size: 1.25rem;
+  vertical-align: middle;
+}
+
+.event-item p::before {
+  content: "📍 ";
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-container {
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border: 0.2rem solid #646262;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  max-width: 400px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-field {
+  border: 0.15rem solid #646262;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: white;
+}
+
+.auth-button {
+  background: black;
+  color: white;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+  background: #333;
+}
+
+.toggle-mode-button {
+  margin-top: 1rem;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.toggle-mode-button:hover {
+  color: #0056b3;
+}
+
+.close-button {
+  position: absolute;
+  top: 0.5rem; /* Adjusted position */
+  right: 0.5rem; /* Adjusted position */
+  color: #6b7280;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.close-button:hover {
+  color: #4b5563;
+}
+
+.user-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.standard-input {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: #f9fafb;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  color: black;
+}
+
+.standard-input:focus {
+  outline: none;
+  border-color: #005eff;
+  box-shadow: 0 0 0 2px rgba(0, 94, 255, 0.2);
+}
+
+.label-text {
+  display: block;
+  color: #4b5563;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
