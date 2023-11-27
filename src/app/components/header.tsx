@@ -1,7 +1,11 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { initializeApp, getApps } from "firebase/app";
+import { firebaseConfig } from "../../../firebase.config"; // Adjust the path as needed
 import Link from "next/link";
-import React, { useState } from "react";
+import AuthModal from "./authModal";
 import {
   HomeModernIcon,
   CalendarDaysIcon,
@@ -9,10 +13,27 @@ import {
   UserCircleIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-import AuthModal from "./authModal";
 
 export default function Header() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Only run on the client side
+      if (!getApps().length) {
+        // Initialize Firebase only if it hasn't been initialized
+        initializeApp(firebaseConfig);
+      }
+
+      const auth = getAuth();
+      const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        setIsUserSignedIn(!!user);
+      });
+
+      return () => unsubscribe(); // Clean up subscription
+    }
+  }, []);
 
   const toggleAuthModal = () => setIsAuthModalOpen(!isAuthModalOpen);
 
@@ -42,13 +63,15 @@ export default function Header() {
               <CalendarDaysIcon className="inline-block h-4 w-4 mr-1" />
               Events
             </Link>
-            <button
-              onClick={toggleAuthModal}
-              className="neu-button text-white px-2 py-2 rounded-lg shadow-md hover:shadow-inner transition duration-300"
-            >
-              <UserCircleIcon className="inline-block h-4 w-4 mr-1" />
-              Sign In/Up
-            </button>
+            {!isUserSignedIn && (
+              <button
+                onClick={toggleAuthModal}
+                className="neu-button text-white px-2 py-2 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+              >
+                <UserCircleIcon className="inline-block h-4 w-4 mr-1" />
+                Sign In/Up
+              </button>
+            )}
             <Link
               href="/user"
               className="neu-button mr-4 text-white px-2 py-2 rounded-lg shadow-md hover:shadow-inner transition duration-300"

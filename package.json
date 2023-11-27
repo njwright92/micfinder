@@ -12,8 +12,8 @@
     "@googlemaps/js-api-loader": "^1.16.2",
     "@heroicons/react": "^2.0.18",
     "firebase": "^10.6.0",
+    "firebaseui": "^6.1.0",
     "next": "14.0.3",
-    "ol": "^8.2.0",
     "react": "^18",
     "react-datepicker": "^4.23.0",
     "react-dom": "^18"
@@ -30,5 +30,8 @@
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.17.0"
   }
 }

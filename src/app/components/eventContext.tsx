@@ -15,12 +15,12 @@ type Event = {
 
 interface EventContextType {
   savedEvents: Event[];
-  saveEvent: (event: Event) => void;
+  saveEvent: (event: Event) => Promise<void>;
 }
 
 const defaultContextValue: EventContextType = {
   savedEvents: [],
-  saveEvent: () => {},
+  saveEvent: () => Promise.resolve(),
 };
 
 export const EventContext =
@@ -33,7 +33,7 @@ type EventProviderProps = {
 export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
   const [savedEvents, setSavedEvents] = useState<Event[]>([]);
 
-  const saveEvent = (event: Event) => {
+  const saveEvent = async (event: Event) => {
     setSavedEvents((prevEvents) => [...prevEvents, event]);
   };
 

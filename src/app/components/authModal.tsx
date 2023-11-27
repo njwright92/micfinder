@@ -1,98 +1,183 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  AuthError,
+} from "firebase/auth";
+import * as firebaseui from "firebaseui";
+import "firebaseui/dist/firebaseui.css";
 
 type AuthModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
-  const [isSignUp, setIsSignUp] = useState(true);
+const emailRegex = /\S+@\S+\.\S+/;
+const passwordRegex = /.{6,}/; // At least 6 characters
 
-  const toggleAuthMode = () => setIsSignUp(!isSignUp);
+const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
+  const [ui, setUi] = useState<firebaseui.auth.AuthUI | null>(null);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [isSignUp, setIsSignUp] = useState<boolean>(true);
+
+  const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const auth = getAuth();
+
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    if (!passwordRegex.test(password)) {
+      alert("Password must be at least 6 characters.");
+      return;
+    }
+
+    if (isSignUp && password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    try {
+      if (isSignUp) {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Signed up successfully! Please update your profile.");
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Signed in successfully!");
+      }
+      onClose();
+    } catch (error) {
+      if (error instanceof Error) {
+        // Specific error messages based on error code
+        switch ((error as AuthError).code) {
+          case "auth/email-already-in-use":
+            alert(
+              "Email already in use. Please sign in or use a different email."
+            );
+            break;
+          case "auth/wrong-password":
+            alert("Incorrect password. Please try again.");
+            break;
+          default:
+            alert(`Error: ${error.message}`);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !isOpen) {
+      return; // Skip FirebaseUI initialization on server side or if modal is not open
+    }
+
+    import("firebaseui").then((firebaseUiModule) => {
+      const authInstance = getAuth();
+      let uiInstance = firebaseUiModule.auth.AuthUI.getInstance();
+
+      if (!uiInstance) {
+        uiInstance = new firebaseUiModule.auth.AuthUI(authInstance);
+      }
+      setUi(uiInstance);
+
+      const uiConfig = {
+        callbacks: {
+          signInSuccessWithAuthResult: () => {
+            onClose();
+            return true; // Redirect happens automatically
+          },
+          uiShown: () => {
+            const loader = document.getElementById("loader");
+            if (loader) {
+              loader.style.display = "none";
+            }
+          },
+        },
+        signInFlow: "popup",
+        signInSuccessUrl: "/",
+        signInOptions: [GoogleAuthProvider.PROVIDER_ID],
+        tosUrl: "<your-tos-url>",
+        privacyPolicyUrl: "<your-privacy-policy-url>",
+      };
+
+      uiInstance.start("#firebaseui-auth-container", uiConfig);
+    });
+
+    return () => {
+      if (ui) {
+        ui.delete();
+      }
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   return (
     <div className="modal-backdrop">
       <div className="modal-container">
-        {isSignUp ? (
-          <form className="form-container mx-auto">
-            <h1 className="text-black text-center">Sign Up</h1>
-            <label htmlFor="email" className="label-text">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email"
-              autoComplete="email"
-              className="input-field"
-            />
-
-            <label htmlFor="password" className="label-text">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              className="input-field"
-              autoComplete="current-password"
-            />
-
-            <button
-              id="signUpButton"
-              name="signUpButton"
-              type="submit"
-              className="auth-button"
-            >
-              Sign Up
-            </button>
-          </form>
-        ) : (
-          <form className="form-container">
-            <h1 className="text-black text-center">Sign In</h1>
-            <label htmlFor="email" className="label-text">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email"
-              autoComplete="email"
-              className="input-field"
-            />
-
-            <label htmlFor="password" className="label-text">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Password"
-              className="input-field"
-              autoComplete="new-password"
-            />
-
-            <button
-              id="signInButton"
-              name="signInButton"
-              type="submit"
-              className="auth-button"
-            >
-              Sign In
-            </button>
-          </form>
-        )}
-        <button onClick={toggleAuthMode} className="toggle-mode-button">
+        <h2 className="modal-title">{isSignUp ? "Sign Up" : "Sign In"}</h2>
+        <form onSubmit={handleAuth} className="form-container">
+          <label htmlFor="email" className="text-black">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            className="input-field"
+            autoComplete="email"
+          />
+          <label htmlFor="password" className="text-black">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="input-field"
+            autoComplete={isSignUp ? "new-password" : "current-password"}
+          />
+          {isSignUp && (
+            <>
+              <label htmlFor="confirmPassword" className="text-black">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm Password"
+                className="input-field"
+                autoComplete="new-password"
+              />
+            </>
+          )}
+          <button type="submit" className="auth-button">
+            {isSignUp ? "Sign Up" : "Sign In"}
+          </button>
+        </form>
+        <button
+          onClick={() => setIsSignUp(!isSignUp)}
+          className="toggle-button"
+        >
           {isSignUp
             ? "Already have an account? Sign In"
-            : "Don't have an account? Sign Up"}
+            : "Need an account? Sign Up"}
         </button>
+        <div id="firebaseui-auth-container"></div>
         <button onClick={onClose} className="close-button">
           &times;
         </button>
