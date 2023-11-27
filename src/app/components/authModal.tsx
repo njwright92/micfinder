@@ -113,7 +113,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         ui.delete();
       }
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, ui]);
 
   if (!isOpen) return null;
 

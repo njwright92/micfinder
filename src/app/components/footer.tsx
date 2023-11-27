@@ -3,12 +3,13 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import ClientOnlySignOutButton from "./ClientSignOut";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth"; // Import User here
 
 export default function Footer() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
-  const handleAuthStateChanged = useCallback((user: firebase.User) => {
+  const handleAuthStateChanged = useCallback((user: User | null) => {
+    // User or null
     setIsUserSignedIn(!!user);
   }, []);
 

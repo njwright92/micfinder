@@ -86,7 +86,7 @@ export default function UserProfile() {
       <div className="user-card">
         {/* Profile Picture Section */}
         <div className="mb-6">
-          <label htmlFor="profilePicture" className="label-text">
+          <label htmlFor="profilePicture" className="the-text">
             Profile Picture:
           </label>
           {isEditing ? (
@@ -123,7 +123,7 @@ export default function UserProfile() {
 
         {/* Name Section */}
         <div className="mb-6">
-          <label htmlFor="name" className="label-text">
+          <label htmlFor="name" className="the-text">
             Name:
           </label>
           {isEditing ? (
@@ -142,7 +142,7 @@ export default function UserProfile() {
 
         {/* Bio Section */}
         <div className="mb-6">
-          <label htmlFor="bio" className="label-text">
+          <label htmlFor="bio" className="the-text">
             Bio:
           </label>
           {isEditing ? (
