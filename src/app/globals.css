@@ -76,7 +76,7 @@ div {
 }
 
 .event-item {
-  @apply p-2 mb-4 border-b-4 border-eventItemBorder;
+  @apply p-2 mb-4 border-b-2 border-eventItemBorder;
 }
 
 .event-item h3 {
