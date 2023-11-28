@@ -247,7 +247,7 @@ const EventsPage = () => {
           </h2>
           {filteredEvents.length > 0 ? (
             filteredEvents.map((event) => (
-              <div key={event.id} className="saved-event-item">
+              <div key={event.id} className="event-item">
                 <h3 className="text-lg font-semibold">{event.name}</h3>
                 <p className="font-bold">Location: {event.location}</p>
                 <div className="details font-bold">

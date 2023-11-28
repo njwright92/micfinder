@@ -1,8 +1,11 @@
 "use client";
 
-import React, { createContext, useState, ReactNode } from "react";
+import React, { createContext, useState, useEffect, ReactNode } from "react";
+import { getAuth } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebase.config";
 
-type Event = {
+export type Event = {
   id: string;
   name: string;
   location: string;
@@ -23,8 +26,7 @@ const defaultContextValue: EventContextType = {
   saveEvent: () => Promise.resolve(),
 };
 
-export const EventContext =
-  createContext<EventContextType>(defaultContextValue);
+const EventContext = createContext<EventContextType>(defaultContextValue);
 
 type EventProviderProps = {
   children: ReactNode;
@@ -33,8 +35,39 @@ type EventProviderProps = {
 export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
   const [savedEvents, setSavedEvents] = useState<Event[]>([]);
 
+  // Function to save event to Firestore
+  const saveEventToFirestore = async (event: Event) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const userEventsRef = doc(db, "userEvents", user.uid);
+    const newEvents = [...savedEvents, event];
+    await setDoc(userEventsRef, { events: newEvents }, { merge: true });
+    setSavedEvents(newEvents);
+  };
+
+  // Function to fetch events from Firestore
+  const fetchEventsFromFirestore = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const userEventsRef = doc(db, "userEvents", user.uid);
+    const docSnap = await getDoc(userEventsRef);
+    if (docSnap.exists()) {
+      setSavedEvents(docSnap.data().events);
+    }
+  };
+
+  // useEffect to fetch events when component mounts
+  useEffect(() => {
+    fetchEventsFromFirestore();
+  }, []);
+
+  // Updated saveEvent function
   const saveEvent = async (event: Event) => {
-    setSavedEvents((prevEvents) => [...prevEvents, event]);
+    await saveEventToFirestore(event); // Save to Firestore
   };
 
   return (
@@ -43,3 +76,5 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
     </EventContext.Provider>
   );
 };
+
+export { EventContext };

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
-import { EventContext } from "../components/eventContext";
+import { EventContext, Event } from "../components/eventContext";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -14,29 +14,48 @@ export default function UserProfile() {
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-  const { savedEvents } = useContext(EventContext);
+  const { saveEvent, savedEvents } = useContext(EventContext);
   const auth = getAuth();
   const storage = getStorage();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userRef = doc(db, "users", user.uid);
-        getDoc(userRef)
-          .then((docSnap) => {
-            if (docSnap.exists()) {
-              const userData = docSnap.data();
-              setName(userData.name);
-              setBio(userData.bio);
-              setProfileImageUrl(userData.profileImageUrl);
-            }
-          })
-          .catch((error) => {
-            console.error("Error fetching user data:", error);
-          });
+        // Fetch user profile data
+        try {
+          const userRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(userRef);
+          if (docSnap.exists()) {
+            const userData = docSnap.data();
+            setName(userData.name);
+            setBio(userData.bio);
+            setProfileImageUrl(userData.profileImageUrl);
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+
+        // Fetch and set events
+        try {
+          const userEventsRef = doc(db, "userEvents", user.uid);
+          const docSnapEvents = await getDoc(userEventsRef);
+          if (docSnapEvents.exists() && docSnapEvents.data().events) {
+            const eventsFromFirestore: Event[] = docSnapEvents.data().events; // Use Event type
+            eventsFromFirestore.forEach((event: Event) => {
+              // Specify type for event
+              if (!savedEvents.some((e) => e.id === event.id)) {
+                saveEvent(event);
+              }
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching user events:", error);
+        }
       }
     });
-  }, [auth]);
+
+    return () => unsubscribe();
+  }, [auth, savedEvents, saveEvent]);
 
   const handleImageChange = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -160,9 +179,11 @@ export default function UserProfile() {
 
         {/* Saved Events Section */}
         <div className="mb-6">
-          <h2 className="text-2xl text-black font-bold mb-4">Saved Events</h2>
+          <h2 className="text-2xl text-black font-bold mb-4 event-card">
+            Saved Events
+          </h2>
           {savedEvents.map((event) => (
-            <div key={event.id} className="saved-event-item">
+            <div key={event.id} className="event-item">
               <h3 className="text-lg font-semibold">{event.name}</h3>
               <p className="font-bold">Location: {event.location}</p>
               <div className="details font-bold">
