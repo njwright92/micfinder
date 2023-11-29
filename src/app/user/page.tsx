@@ -14,7 +14,7 @@ export default function UserProfile() {
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-  const { saveEvent, savedEvents } = useContext(EventContext);
+  const { saveEvent, savedEvents, deleteEvent } = useContext(EventContext);
   const auth = getAuth();
   const storage = getStorage();
 
@@ -92,6 +92,11 @@ export default function UserProfile() {
         console.error("Error updating/creating profile:", error);
       }
     }
+  };
+
+  const handleDeleteEvent = async (eventId: string) => {
+    await deleteEvent(eventId); // Call deleteEvent from context
+    // You might want to add some UI feedback or error handling here
   };
 
   const handleEdit = () => {
@@ -190,6 +195,12 @@ export default function UserProfile() {
                 <span className="details-label">ℹ️ Details:</span>
                 <div dangerouslySetInnerHTML={{ __html: event.details }} />
               </div>
+              <button
+                className="delete-button"
+                onClick={() => handleDeleteEvent(event.id)}
+              >
+                Delete
+              </button>
             </div>
           ))}
         </div>

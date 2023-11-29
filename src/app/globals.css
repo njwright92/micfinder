@@ -164,3 +164,22 @@ div {
 .the-text {
   @apply block text-gray-600 text-sm font-semibold mb-2;
 }
+
+.delete-button {
+  @apply translate-y-0.5 shadow-md;
+  background-color: #f44336; /* Red background color */
+  color: #fff; /* White text color */
+  font-weight: bold;
+  padding: 0.3rem 0.7rem; /* Padding on top and bottom, and left and right */
+  border: .1rem solid black;
+  border-radius: 0.625rem; /* Rounded corners */
+  cursor: pointer;
+  margin-top: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.delete-button:hover {
+  @apply -translate-y-1 shadow-lg;
+  background-color: #f87171; /* Darker red background color on hover */
+}

@@ -19,11 +19,13 @@ export type Event = {
 interface EventContextType {
   savedEvents: Event[];
   saveEvent: (event: Event) => Promise<void>;
+  deleteEvent: (eventId: string) => Promise<void>; // New method for deleting an event
 }
 
 const defaultContextValue: EventContextType = {
   savedEvents: [],
   saveEvent: () => Promise.resolve(),
+  deleteEvent: () => Promise.resolve(),
 };
 
 const EventContext = createContext<EventContextType>(defaultContextValue);
@@ -35,7 +37,6 @@ type EventProviderProps = {
 export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
   const [savedEvents, setSavedEvents] = useState<Event[]>([]);
 
-  // Function to save event to Firestore
   // Function to save event to Firestore
   const saveEventToFirestore = async (event: Event) => {
     const auth = getAuth();
@@ -53,6 +54,16 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
     }
   };
 
+  const deleteEventFromFirestore = async (eventId: string) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const updatedEvents = savedEvents.filter((event) => event.id !== eventId);
+    const userEventsRef = doc(db, "userEvents", user.uid);
+    await setDoc(userEventsRef, { events: updatedEvents }, { merge: true });
+    setSavedEvents(updatedEvents);
+  };
   // Function to fetch events from Firestore
   const fetchEventsFromFirestore = async () => {
     const auth = getAuth();
@@ -77,7 +88,9 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
   };
 
   return (
-    <EventContext.Provider value={{ savedEvents, saveEvent }}>
+    <EventContext.Provider
+      value={{ savedEvents, saveEvent, deleteEvent: deleteEventFromFirestore }}
+    >
       {children}
     </EventContext.Provider>
   );
