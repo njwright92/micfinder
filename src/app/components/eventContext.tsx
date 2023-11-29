@@ -89,15 +89,24 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
   }, []);
 
   // Updated saveEvent function
-  const saveEvent = async (event: Event) => {
-    try {
-      await saveEventToFirestore(event); // Save to Firestore
-      alert("Event saved to profile."); // Success alert
-    } catch (error) {
-      console.error("Error saving event:", error);
-      alert("Error saving event."); // Error alert
-    }
-  };
+const saveEvent = async (event: Event) => {
+  // Check if the event already exists in the savedEvents array
+  const eventAlreadySaved = savedEvents.some((e) => e.id === event.id);
+
+  if (eventAlreadySaved) {
+    alert("This event is already saved.");
+    return; // Stop the function if the event is already saved
+  }
+
+  try {
+    await saveEventToFirestore(event); // Save to Firestore
+    // Removed the success alert
+  } catch (error) {
+    console.error("Error saving event:", error);
+    // Removed the error alert
+  }
+};
+
 
   return (
     <EventContext.Provider
