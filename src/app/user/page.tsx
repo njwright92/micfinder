@@ -55,7 +55,7 @@ export default function UserProfile() {
     });
 
     return () => unsubscribe();
-  }, [auth, savedEvents, saveEvent]);
+  }, [auth, saveEvent, savedEvents]);
 
   const handleImageChange = async (
     event: React.ChangeEvent<HTMLInputElement>

@@ -36,15 +36,21 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
   const [savedEvents, setSavedEvents] = useState<Event[]>([]);
 
   // Function to save event to Firestore
+  // Function to save event to Firestore
   const saveEventToFirestore = async (event: Event) => {
     const auth = getAuth();
     const user = auth.currentUser;
     if (!user) return;
 
-    const userEventsRef = doc(db, "userEvents", user.uid);
-    const newEvents = [...savedEvents, event];
-    await setDoc(userEventsRef, { events: newEvents }, { merge: true });
-    setSavedEvents(newEvents);
+    // Check if the event already exists in the savedEvents array
+    const eventAlreadySaved = savedEvents.some((e) => e.id === event.id);
+
+    if (!eventAlreadySaved) {
+      const userEventsRef = doc(db, "userEvents", user.uid);
+      const newEvents = [...savedEvents, event];
+      await setDoc(userEventsRef, { events: newEvents }, { merge: true });
+      setSavedEvents(newEvents);
+    }
   };
 
   // Function to fetch events from Firestore
