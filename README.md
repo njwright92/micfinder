@@ -1,36 +1,85 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# OpenMicFinder - Your Open Mic Event Discovery Platform
+
+OpenMicFinder is a web application that caters to upcoming and aspiring stand-up comedians by providing a platform to discover open mic events in their selected city. This project is built using TypeScript and leverages Firebase/Firestore for data management, along with Google Cloud Platform Maps integration for location-based features.
+
 ## Getting Started
 
-First, run the development server:
+To get started with OpenMicFinder, follow these steps:
 
-```bash
+#### 1. Clone the repository to your local machine:
+
+git clone "https://github.com/njwright92/micfinder.git"
+cd OpenMicFinder
+
+Install the dependecies:
+
+npm install
+or
+yarn install
+or
+pnpm install
+or
+bun install
+
+#### 2. Set up Firebase:
+
+Create a Firebase project on the Firebase Console.
+Obtain your Firebase configuration credentials.
+Create a .env.local file in the project root and add your Firebase credentials as follows:
+
+NEXT_PUBLIC_FIREBASE_API_KEY=<your-api-key>
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<your-auth-domain>
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=<your-project-id>
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=<your-storage-bucket>
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<your-messaging-sender-id>
+NEXT_PUBLIC_FIREBASE_APP_ID=<your-app-id>
+
+#### 3. Run the development server:
+
 npm run dev
-# or
+or
 yarn dev
-# or
+or
 pnpm dev
-# or
+or
 bun dev
-```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Discover a wide range of open mic events in your selected city.
+- Explore events for stand-up comedy, poetry slams, music jams, and more.
+- Connect with local artists and enthusiasts to build your network.
+- Showcase your talent by promoting your own open mic events.
+- Technologies and Dependencies
+- OpenMicFinder utilizes the following technologies and dependencies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-- Next.js: A React framework for server-rendered applications.
+-- Firebase: A cloud-based platform for building web and mobile applications.
+-- Google Cloud Platform Maps: Integration for location-based features.
+-- @googlemaps/js-api-loader: JavaScript API loader for Google Maps.
+-- @heroicons/react: A set of free, MIT-licensed high-quality SVG icons.
+-- react-datepicker: A responsive date and time picker library.
+-- sharp: A high-performance image processing library.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Learn More
 
-## Deploy on Vercel
+To learn more about the project and its development, refer to the following resources:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Next.js Documentation: Explore Next.js features and API.
+- Firebase Documentation: Discover Firebase's capabilities.
+- Google Cloud Maps Documentation: Learn about Google Maps integration.
+- The OpenMicFinder GitHub Repository: Contribute to the project and share your feedback.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Deploy on Vercel
+
+The easiest way to deploy your OpenMicFinder app is to use the Vercel Platform by the creators of Next.js.
+
+Check out the Next.js deployment documentation for more details.
+
+We welcome your contributions and feedback to make OpenMicFinder even better!
