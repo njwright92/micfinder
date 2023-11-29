@@ -58,12 +58,18 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
     const auth = getAuth();
     const user = auth.currentUser;
     if (!user) return;
-
-    const updatedEvents = savedEvents.filter((event) => event.id !== eventId);
-    const userEventsRef = doc(db, "userEvents", user.uid);
-    await setDoc(userEventsRef, { events: updatedEvents }, { merge: true });
-    setSavedEvents(updatedEvents);
+    try {
+      const updatedEvents = savedEvents.filter((event) => event.id !== eventId);
+      const userEventsRef = doc(db, "userEvents", user.uid);
+      await setDoc(userEventsRef, { events: updatedEvents }, { merge: true });
+      setSavedEvents(updatedEvents);
+      alert("Event deleted successfully."); // Success alert
+    } catch (error) {
+      console.error("Error deleting event:", error);
+      alert("Error deleting event."); // Error alert
+    }
   };
+
   // Function to fetch events from Firestore
   const fetchEventsFromFirestore = async () => {
     const auth = getAuth();
@@ -84,7 +90,13 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
 
   // Updated saveEvent function
   const saveEvent = async (event: Event) => {
-    await saveEventToFirestore(event); // Save to Firestore
+    try {
+      await saveEventToFirestore(event); // Save to Firestore
+      alert("Event saved to profile."); // Success alert
+    } catch (error) {
+      console.error("Error saving event:", error);
+      alert("Error saving event."); // Error alert
+    }
   };
 
   return (
