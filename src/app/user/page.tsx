@@ -87,7 +87,7 @@ export default function UserProfile() {
           { merge: true }
         ); // merge: true will update the document if it exists
         setIsEditing(false);
-        console.log("Profile updated");
+        
       } catch (error) {
         console.error("Error updating/creating profile:", error);
       }

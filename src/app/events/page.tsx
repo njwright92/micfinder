@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "@heroicons/react/24/solid";
 import { EventContext } from "../components/eventContext";
 import GoogleMap from "../components/GoogleMap";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase.config";
 
 type Event = {
   id: string;
@@ -136,6 +138,7 @@ const EventsPage = () => {
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const datePickerRef = useRef<any>(null);
+  const [events, setEvents] = useState<Event[]>(mockEvents);
   const { saveEvent } = useContext(EventContext);
 
   const handleEventSave = (event: Event) => {
@@ -172,12 +175,19 @@ const EventsPage = () => {
     return weekOfMonth === 2 || weekOfMonth === 4;
   };
 
-  const filteredEvents = mockEvents.filter((event) => {
+  const filteredEvents = events.filter((event) => {
     const isInSelectedCity =
       selectedCity === "" || event.location.includes(selectedCity);
+
+    // Normalize dates for comparison
+    const eventDate = new Date(event.date);
+    eventDate.setHours(0, 0, 0, 0); // Set time to start of the day
+    const normalizedSelectedDate = new Date(selectedDate);
+    normalizedSelectedDate.setHours(0, 0, 0, 0);
+
     const isOnSelectedDate = event.isRecurring
       ? isRecurringEvent(event.date, selectedDate, event)
-      : new Date(event.date).toDateString() === selectedDate.toDateString();
+      : eventDate.toDateString() === normalizedSelectedDate.toDateString();
 
     return isInSelectedCity && isOnSelectedDate;
   });
@@ -201,6 +211,30 @@ const EventsPage = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const querySnapshot = await getDocs(collection(db, "events"));
+      const fetchedEvents = querySnapshot.docs.map((doc) => {
+        const eventData = doc.data();
+        // Convert Firestore timestamp to JavaScript Date object
+        eventData.date = eventData.date.toDate();
+        return {
+          id: doc.id,
+          ...eventData,
+        };
+      }) as Event[];
+
+      setEvents((prevEvents) => {
+        const newEvents = fetchedEvents.filter(
+          (fe) => !prevEvents.some((pe) => pe.id === fe.id)
+        );
+        return [...prevEvents, ...newEvents];
+      });
+    };
+
+    fetchEvents();
+  }, []);
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl text-center font-bold">Open Mic Events</h1>
@@ -216,7 +250,7 @@ const EventsPage = () => {
           <option value="">Select a City</option>
           <option value="Spokane WA">Spokane, WA</option>
           <option value="Spokane Valley WA">Spokane Valley, WA</option>
-          <option value="Coeur D'Alene ID">Coeur D&apos;alene, ID</option>
+          <option value="Coeur D'Alene ID">Coeur D&apos;Alene, ID</option>
           <option value="Hayden ID">Hayden, ID</option>
           <option value="Post Falls ID">PostFalls, ID</option>
           <option value="Sandpoint ID">Sandpoint, ID</option>
