@@ -87,7 +87,6 @@ export default function UserProfile() {
           { merge: true }
         ); // merge: true will update the document if it exists
         setIsEditing(false);
-        
       } catch (error) {
         console.error("Error updating/creating profile:", error);
       }
@@ -140,6 +139,7 @@ export default function UserProfile() {
                 width={100}
                 height={100}
                 className="profile-image"
+                unoptimized
               />
             )
           )}
