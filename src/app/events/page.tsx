@@ -149,35 +149,34 @@ const EventsPage = () => {
   const [events, setEvents] = useState<Event[]>(mockEvents);
   const { saveEvent } = useContext(EventContext);
 
-  const isRecurringEvent = (
-    eventDate: string,
-    selectedDate: Date,
-    event: Event
-  ): boolean => {
-    const dayOfWeekMap: { [key: string]: number } = {
-      Sunday: 0,
-      Monday: 1,
-      Tuesday: 2,
-      Wednesday: 3,
-      Thursday: 4,
-      Friday: 5,
-      Saturday: 6,
-    };
+  const isRecurringEvent = useCallback(
+    (eventDate: string, selectedDate: Date, event: Event): boolean => {
+      const dayOfWeekMap: { [key: string]: number } = {
+        Sunday: 0,
+        Monday: 1,
+        Tuesday: 2,
+        Wednesday: 3,
+        Thursday: 4,
+        Friday: 5,
+        Saturday: 6,
+      };
 
-    const eventDay = dayOfWeekMap[eventDate];
-    const selectedDay = selectedDate.getDay();
+      const eventDay = dayOfWeekMap[eventDate];
+      const selectedDay = selectedDate.getDay();
 
-    if (eventDay !== selectedDay) {
-      return false;
-    }
+      if (eventDay !== selectedDay) {
+        return false;
+      }
 
-    if (event.name !== "Open Mic") {
-      return true;
-    }
+      if (event.name !== "Open Mic") {
+        return true;
+      }
 
-    const weekOfMonth = Math.floor((selectedDate.getDate() - 1) / 7) + 1;
-    return weekOfMonth === 2 || weekOfMonth === 4;
-  };
+      const weekOfMonth = Math.floor((selectedDate.getDate() - 1) / 7) + 1;
+      return weekOfMonth === 2 || weekOfMonth === 4;
+    },
+    []
+  );
 
   const filteredEvents = useMemo(() => {
     return events.filter((event) => {
