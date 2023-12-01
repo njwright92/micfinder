@@ -8,6 +8,7 @@ import { EventContext } from "../components/eventContext";
 import GoogleMap from "../components/GoogleMap";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase.config";
+import EventForm from "../components/EventForm";
 
 type Event = {
   id: string;
@@ -238,14 +239,23 @@ const EventsPage = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl text-center font-bold">Open Mic Events</h1>
-      <h6 className="text-center my-2">Select your city to view events</h6>
-      <div className="flex justify-center my-4 space-x-4">
+      <p className="text-lg md:text-xl text-center mt-4 mb-2 text-gray-200">
+        Got an amazing event coming up? Share it here and get the word out to
+        the local community!
+      </p>
+      <div className="text-center mb-2">
+        <EventForm />
+      </div>
+      <h6 className="text-center mt-4">
+        Select your city and date to view events
+      </h6>
+      <div className="flex flex-col justify-center items-center mt-2">
         <select
           id="citySelect"
           name="selectedCity"
           value={selectedCity}
           onChange={handleCityChange}
-          className="modern-input"
+          className="modern-input max-w-xs mx-auto"
         >
           <option value="">Select a City</option>
           <option value="Spokane WA">Spokane, WA</option>
@@ -255,7 +265,7 @@ const EventsPage = () => {
           <option value="Post Falls ID">PostFalls, ID</option>
           <option value="Sandpoint ID">Sandpoint, ID</option>
         </select>
-        <div className="relative">
+        <div className="relative mt-2">
           <ReactDatePicker
             ref={datePickerRef}
             id="datePicker"
