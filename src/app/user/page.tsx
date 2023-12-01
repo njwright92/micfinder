@@ -128,6 +128,7 @@ export default function UserProfile() {
                   width={100}
                   height={100}
                   className="profile-image"
+                  priority
                 />
               )}
             </>
@@ -140,6 +141,7 @@ export default function UserProfile() {
                 height={100}
                 className="profile-image"
                 unoptimized
+                priority
               />
             )
           )}
