@@ -52,7 +52,7 @@ export default function Header() {
             <span className="hidden md:inline-block">MicFinder</span>
           </Link>
 
-          <div className="flex gap-1">
+          <div className="flex gap-2">
             <Link
               href="/about"
               className="neu-button px-1 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
