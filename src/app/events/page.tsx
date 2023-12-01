@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useContext,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "@heroicons/react/24/solid";
@@ -142,10 +149,6 @@ const EventsPage = () => {
   const [events, setEvents] = useState<Event[]>(mockEvents);
   const { saveEvent } = useContext(EventContext);
 
-  const handleEventSave = (event: Event) => {
-    saveEvent(event);
-  };
-
   const isRecurringEvent = (
     eventDate: string,
     selectedDate: Date,
@@ -176,32 +179,44 @@ const EventsPage = () => {
     return weekOfMonth === 2 || weekOfMonth === 4;
   };
 
-  const filteredEvents = events.filter((event) => {
-    const isInSelectedCity =
-      selectedCity === "" || event.location.includes(selectedCity);
+  const filteredEvents = useMemo(() => {
+    return events.filter((event) => {
+      const isInSelectedCity =
+        selectedCity === "" || event.location.includes(selectedCity);
 
-    // Normalize dates for comparison
-    const eventDate = new Date(event.date);
-    eventDate.setHours(0, 0, 0, 0); // Set time to start of the day
-    const normalizedSelectedDate = new Date(selectedDate);
-    normalizedSelectedDate.setHours(0, 0, 0, 0);
+      // Normalize dates for comparison
+      const eventDate = new Date(event.date);
+      eventDate.setHours(0, 0, 0, 0); // Set time to start of the day
+      const normalizedSelectedDate = new Date(selectedDate);
+      normalizedSelectedDate.setHours(0, 0, 0, 0);
 
-    const isOnSelectedDate = event.isRecurring
-      ? isRecurringEvent(event.date, selectedDate, event)
-      : eventDate.toDateString() === normalizedSelectedDate.toDateString();
+      const isOnSelectedDate = event.isRecurring
+        ? isRecurringEvent(event.date, selectedDate, event)
+        : eventDate.toDateString() === normalizedSelectedDate.toDateString();
 
-    return isInSelectedCity && isOnSelectedDate;
-  });
+      return isInSelectedCity && isOnSelectedDate;
+    });
+  }, [events, selectedCity, selectedDate, isRecurringEvent]);
 
-  const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCity(event.target.value);
-  };
+  const handleEventSave = useCallback(
+    (event: Event) => {
+      saveEvent(event);
+    },
+    [saveEvent]
+  );
 
-  const handleDateChange = (date: Date | null) => {
+  const handleCityChange = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedCity(event.target.value);
+    },
+    []
+  );
+
+  const handleDateChange = useCallback((date: Date | null) => {
     if (date) {
       setSelectedDate(date);
     }
-  };
+  }, []);
 
   const selectedCityCoordinates =
     cityCoordinates[selectedCity] || cityCoordinates["Spokane WA"];
@@ -236,6 +251,9 @@ const EventsPage = () => {
     fetchEvents();
   }, []);
 
+  const MemoizedGoogleMap = React.memo(GoogleMap);
+  const MemoizedEventForm = React.memo(EventForm);
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl text-center font-bold">Open Mic Events</h1>
@@ -244,7 +262,7 @@ const EventsPage = () => {
         the local community!
       </p>
       <div className="text-center mb-2">
-        <EventForm />
+        <MemoizedEventForm />
       </div>
       <h6 className="text-center mt-4">
         Select your city and date to view events
@@ -316,7 +334,7 @@ const EventsPage = () => {
 
         {/* Map Component */}
         <div className="events-calendar">
-          <GoogleMap
+          <MemoizedGoogleMap
             lat={selectedCityCoordinates.lat}
             lng={selectedCityCoordinates.lng}
             events={filteredEvents}
