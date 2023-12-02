@@ -54,7 +54,7 @@ export default function HomePage() {
           Step into the Spotlight:
         </h2>
         <p>
-          Whether you're a budding comedian, a poet, or a musician,
+          Whether you&apos;re a budding comedian, a poet, or a musician,
           OpenMicFinder is your platform to shine. Find events that resonate
           with your art and let the world be your audience.
         </p>
@@ -65,7 +65,7 @@ export default function HomePage() {
         </h2>
         <p>
           Dive into Comedify, the app with comicBot - a humorous, occasionally
-          offensive LLM, and JokePad. It's the perfect companion for comedians
+          offensive LLM, and JokePad. It&apos;s the perfect companion for comedians
           looking to write, store, and refine their jokes. Get ready to laugh
           and be inspired!
         </p>
