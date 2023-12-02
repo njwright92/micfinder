@@ -255,7 +255,9 @@ const EventsPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl text-center font-bold">Open Mic Events</h1>
+      <h1 className="text-4xl text-center font-bold mb-6 text-blue-400">
+        Open Mic Events
+      </h1>
       <p className="text-lg md:text-xl text-center mt-4 mb-2 text-gray-200">
         Got an amazing event coming up? Share it here and get the word out to
         the local community!

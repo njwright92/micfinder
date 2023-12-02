@@ -1,29 +1,42 @@
-// app/about/page.tsx
-
 export default function AboutPage() {
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-6">About OpenMicFinder</h1>
+      <h1 className="text-4xl text-center font-bold mb-6 text-blue-400">
+        About MicFinder
+      </h1>
       <p className="mb-4">
-        OpenMicFinder is dedicated to connecting artists with audiences through
-        the power of live performances. Our platform is designed to help you
-        discover and share open mic events in various artistic domains including
-        comedy, music, poetry, and more.
+        At OpenMicFinder, we're passionate about creating connections between
+        performers and their audience. Our platform is a dynamic space where you
+        can find, explore, and share a variety of live events, spanning from
+        stand-up comedy to soulful music gigs, engaging poetry readings, and
+        beyond.
       </p>
-      <h2 className="text-2xl font-semibold mb-3">Our Mission</h2>
+      <h2 className="text-2xl font-semibold mb-4 underline text-blue-500">
+        What Drives Us
+      </h2>
       <p className="mb-6">
-        We believe in the power of live performances to inspire, entertain, and
-        bring people together. Our mission is to make it easier for everyone to
-        access these experiences and for artists to find their stage.
+        Our core belief lies in the transformative effect of live performances.
+        We aim to democratize the access to these rich, cultural experiences,
+        facilitating a space where emerging talents can shine and audiences can
+        indulge in diverse artistic expressions.
       </p>
-      <h2 className="text-2xl font-semibold mb-3">Contact Us</h2>
+      <h2 className="text-2xl font-semibold mb-4 underline text-blue-500">
+        Get in Touch
+      </h2>
       <p>
-        If you have any questions or suggestions, please feel free to reach out
-        to us at:
+        Your feedback and queries are invaluable to us. For any questions,
+        suggestions, or just to say hello, please contact us at:
       </p>
       <ul>
         <li>Email: contact@openmicfinder.com</li>
-        {/* Add more contact details if necessary */}
+        <p className="mt-2">
+          <a
+            href="mailto:nitronate@gmail.com"
+            className="text-blue-500 hover:underline"
+          >
+            Contact me with questions or issues
+          </a>
+        </p>
       </ul>
     </div>
   );

@@ -29,7 +29,7 @@ const config: Config = {
         // Add other custom colors as needed
       },
       boxShadow: {
-        neuButton: '4px 4px 10px rgb(255, 255, 255), -4px -4px 10px rgb(255, 255, 255)',
+        neuButton: '2px 2px 5px rgb(255, 255, 255), -2px -2px 5px rgb(255, 255, 255)',
         // Add other custom shadows as needed
       },
       backgroundImage: {

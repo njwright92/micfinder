@@ -104,8 +104,9 @@ export default function UserProfile() {
 
   return (
     <div className="container mx-auto p-4 max-w-lg">
-      <h1 className="text-3xl font-bold mb-6 text-center">User Profile</h1>
-
+      <h1 className="text-4xl text-center font-bold mb-6 text-blue-400">
+        User Profile
+      </h1>
       <div className="user-card">
         {/* Profile Picture Section */}
         <div className="mb-6">

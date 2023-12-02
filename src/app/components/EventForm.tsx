@@ -59,7 +59,7 @@ const EventForm: React.FC = () => {
         await submitEvent(memoizedEvent);
         setShowModal(false);
         alert(
-          "Event has been added successfully! Check the events page to view!"
+          "Event has been added successfully! Check the events page to view! Email me with any issues."
         );
       } catch (error) {
         console.error("Error adding event: ", error);
