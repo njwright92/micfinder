@@ -140,6 +140,81 @@ const mockEvents: Event[] = [
     </a>
   `,
   },
+  {
+    id: "8",
+    isRecurring: true,
+    name: "QUEER COMEDY NIGHT",
+    location: "nYne Bar & Bistro Spokane WA",
+    date: "Tuesday",
+    lat: 47.6573563,
+    lng: -117.4147831,
+    details: `
+    Signup in person at 7:30pm. starts at 8pm. nYne is one of our local gay bars, so any and all comics who identify as LGBTQIA+ are strongly encouraged to go. This open mic is one of 3 that are on Tuesday nights, so if you’re looking to string performances together, don’t miss it! Queer allies are also welcome! <a href="https://www.nynebar.com/>nynebar.com</a>
+    <a href="https://www.google.com/maps/place/nYne+Bar+%26+Bistro/@47.6573563,-119.1693299,8z/data=!4m10!1m2!2m1!1sn9ne+bistro!3m6!1s0x549e188a0e23298d:0xe96a55dc6ee16314!8m2!3d47.6573563!4d-117.4147831!15sCgtuOW5lIGJpc3Ryb1oNIgtuOW5lIGJpc3Ryb5IBDmdheV9uaWdodF9jbHVimgEkQ2hkRFNVaE5NRzluUzBWSlEwRm5TVU56Y1hOdU0zRlJSUkFC4AEA!16s%2Fg%2F1vzv3cvm?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
+      View on Google Maps
+    </a>
+  `,
+  },
+  {
+    id: "9",
+    isRecurring: true,
+    name: "T’S ON A TUESDAY",
+    location: "T’s Lounge Spokane WA",
+    date: "Tuesday",
+    lat: 47.6636398,
+    lng: -117.4294504,
+    details: `
+    Signup in person at 7:45pm. starts at 8pm usually 9ish on New Talent Nights. What’s a comedy scene without a dive bar mic? T’s On A Tuesday has been going strong for years and is the perfect place to test out your newest material. There is usually a large caravan of comics who come to T’s after New Talent is done, and offers the type of stage where you can really let your hair down. Anything can (and likely will) happen at this mic, and it’s never not a good time, but only if you enjoy telling jokes. <a href="https://tsspokane.com/>tsspokane.com</a> 
+    <a href="https://www.google.com/maps/place/T's+Lounge/@47.6636398,-117.4294504,17z/data=!3m1!4b1!4m6!3m5!1s0x549e185ed5817429:0x475d58f4a48ae52b!8m2!3d47.6636398!4d-117.4268755!16s%2Fg%2F11c5ss4c1c?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
+      View on Google Maps
+    </a>
+  `,
+  },
+  {
+    id: "10",
+    isRecurring: true,
+    name: "LITTLE NEVADA COMEDY OPEN MIC",
+    location: "Little Nevada Restaurant and Lounge Spokane WA",
+    date: "Thursday",
+    lat: 47.7015451,
+    lng: -117.3999719,
+    details: `
+    Signup in person at 6:00pm starts 6:30pm-ishThe Little Nevada Comedy Open Mic is Spokane’s newest open mic! Located in the northern-ish part of Spokane, this spot (and every other one, for that matter) is only as good as you make it, so get to writing! <a href="https://www.facebook.com/thelittlenevada/about"> little nevada Facebook</a>
+    <a href="https://www.google.com/maps/place/The+Little+Nevada+Restaurant+%26+Lounge/@47.7015451,-117.3999719,17z/data=!3m1!4b1!4m6!3m5!1s0x549e19133302e643:0x1f7e41b2e502ce4!8m2!3d47.7015452!4d-117.3953585!16s%2Fg%2F11h5rcfc77?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
+      View on Google Maps
+    </a>
+  `,
+  },
+  {
+    id: "11",
+    isRecurring: true,
+    name: "3RD THURSDAY COMEDY OPEN MIC",
+    location: "Fox Hole Bar and Grill *Medical Lake* Spokane WA",
+    date: "Thursday",
+    lat: 47.5725708,
+    lng: -117.6844563,
+    details: `
+    Signup in person or DM starts at 7:00pm sharpHappens on the 3RD THURSDAY OF THE MONTH. It is an open mic with a 20-min feature act at the end. Comics get the light when they have 1 min remaining. If you’re looking to perform at the Fox Hole and DZ, let Chris know so he can put you towards the front of the lineup. Every comic that performs gets an even cut of tips @ the end of the show, so it pays (at least a little bit) to be (at least a little bit) funny. <a href="https://www.facebook.com/thefoxholemedicallake/"> foxholemedicallake Facebook</a> 
+    <a href="https://www.google.com/maps/place/The+Foxhole+Bar+and+Grill/@47.5725708,-117.6844563,17z/data=!3m1!4b1!4m6!3m5!1s0x549e6b079450a8a7:0x706aa4e325b9b6cd!8m2!3d47.5725708!4d-117.6818814!16s%2Fg%2F11syxzl8hk?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
+      View on Google Maps
+    </a>
+  `,
+  },
+  {
+    id: "12",
+    isRecurring: true,
+    name: "FRIDAY FUNNIES",
+    location: "The Garland Drinkery Spokane WA",
+    date: "Friday",
+    lat: 47.693665,
+    lng: -117.4268169,
+    details: `
+    The Garland Drinkery is one of the newer mics in the area, and offers a fun space to perform in Spokane’s Historic Garland District. Snag some grub at the Milk Bottle before your set and get those laughs on! This mic happens EVERY OTHER FRIDAY. Be sure to check our calendar so you know which Fridays those are! <a href="https://www.facebook.com/drinkerynation/"> drinkerynation Facebook</a> 
+    <a href="https://www.google.com/maps/place/Garland+Drinkery/@47.693665,-117.4268169,17z/data=!3m1!4b1!4m6!3m5!1s0x549e191702e19759:0xb7c159246af19ef8!8m2!3d47.693665!4d-117.424242!16s%2Fg%2F1tdwptks?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
+      View on Google Maps
+    </a>
+  `,
+  },
 ];
 
 const EventsPage = () => {
@@ -168,12 +243,49 @@ const EventsPage = () => {
         return false;
       }
 
-      if (event.name !== "Open Mic") {
-        return true;
+      // Handle special cases based on event ID
+      if (event.id === "12") {
+        // Every other Friday
+        const firstFriday = new Date(
+          selectedDate.getFullYear(),
+          selectedDate.getMonth(),
+          1
+        );
+        while (firstFriday.getDay() !== 5) {
+          firstFriday.setDate(firstFriday.getDate() + 1);
+        }
+        const diffInDays = Math.ceil(
+          (selectedDate.getTime() - firstFriday.getTime()) /
+            (1000 * 60 * 60 * 24)
+        );
+        return diffInDays % 14 < 7;
       }
 
-      const weekOfMonth = Math.floor((selectedDate.getDate() - 1) / 7) + 1;
-      return weekOfMonth === 2 || weekOfMonth === 4;
+      if (event.id === "11") {
+        // Every third Thursday of the month
+        const thirdThursday = new Date(
+          selectedDate.getFullYear(),
+          selectedDate.getMonth(),
+          1
+        );
+        let thursdayCount = 0;
+        while (thursdayCount < 3) {
+          if (thirdThursday.getDay() === 4) {
+            thursdayCount++;
+            if (thursdayCount === 3) break;
+          }
+          thirdThursday.setDate(thirdThursday.getDate() + 1);
+        }
+        return selectedDate.getDate() === thirdThursday.getDate();
+      }
+
+      // Default Open Mic recurrence
+      if (event.id === "5") {
+        const weekOfMonth = Math.floor((selectedDate.getDate() - 1) / 7) + 1;
+        return weekOfMonth === 2 || weekOfMonth === 4;
+      }
+
+      return true; // Default case for other events
     },
     []
   );
