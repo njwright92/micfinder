@@ -21,10 +21,10 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-100 text-black text-center p-4 border-t-2 border-gray-300">
-      <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
+      <div className="container mx-auto flex flex-col lg:flex-row justify-between">
         <div>
-          <h3 className="font-bold text-lg mb-2">Contact Us</h3>
-          <p className="flex items-center justify-center lg:justify-start mb-2">
+          <h1 className="font-bold text-xl mb-2">Contact Us</h1>
+          <p className="flex items-center mb-2">
             <EnvelopeIcon className="h-4 w-4 mr-1 ml-1" />
             contact@openmicfinder.com
           </p>
@@ -35,8 +35,8 @@ export default function Footer() {
             Email Me
           </a>
         </div>
-        <div style={{ textAlign: "center" }}>
-          <h3 className="font-bold text-lg mb-2">Check Out Comedify!</h3>
+        <div className="text-center">
+          <h1 className="font-bold text-xl mb-2">Check Out Comedify!</h1>
           <p className="text-md font-bold mb-2">
             An app to interact with comicBot and write/store your jokes
           </p>
@@ -46,6 +46,9 @@ export default function Footer() {
           >
             Visit Comedify 😃
           </a>
+          <p className="italic mb-2 mt-8">
+            © {new Date().getFullYear()} OpenMicFinder
+          </p>
         </div>
         {isUserSignedIn && (
           <div className="mt-4 lg:mt-0">
@@ -53,9 +56,6 @@ export default function Footer() {
           </div>
         )}
       </div>
-      <p className="flex items-center justify-center mb-2 mt-2">
-        © {new Date().getFullYear()} OpenMicFinder
-      </p>
     </footer>
   );
 }

@@ -49,7 +49,7 @@ export default function HomePage() {
         </p>
         <EventForm />
       </section>
-      <section>
+      <section className="mb-6">
         <h2 className="text-2xl font-semibold mb-4 underline text-blue-500">
           Step into the Spotlight:
         </h2>
@@ -65,9 +65,9 @@ export default function HomePage() {
         </h2>
         <p>
           Dive into Comedify, the app with comicBot - a humorous, occasionally
-          offensive LLM, and JokePad. It&apos;s the perfect companion for comedians
-          looking to write, store, and refine their jokes. Get ready to laugh
-          and be inspired!
+          offensive LLM, and JokePad. It&apos;s the perfect companion for
+          comedians looking to write, store, and refine their jokes. Get ready
+          to laugh and be inspired!
         </p>
         <p className="mt-1">
           <a

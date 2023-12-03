@@ -5,7 +5,7 @@ export default function AboutPage() {
         About MicFinder
       </h1>
       <p className="mb-4">
-        At OpenMicFinder, we&apos;re passionate about creating connections between
+        At MicFinder, we&apos;re passionate about creating connections between
         performers and their audience. Our platform is a dynamic space where you
         can find, explore, and share a variety of live events, spanning from
         stand-up comedy to soulful music gigs, engaging poetry readings, and
