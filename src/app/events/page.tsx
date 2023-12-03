@@ -8,13 +8,14 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CalendarIcon } from "@heroicons/react/24/solid";
 import { EventContext } from "../components/eventContext";
 import GoogleMap from "../components/GoogleMap";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../../firebase.config";
+import { db, auth } from "../../../firebase.config";
 import EventForm from "../components/EventForm";
 
 type Event = {
@@ -223,6 +224,7 @@ const EventsPage = () => {
   const datePickerRef = useRef<any>(null);
   const [events, setEvents] = useState<Event[]>(mockEvents);
   const { saveEvent } = useContext(EventContext);
+  const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
   const isRecurringEvent = useCallback(
     (eventDate: string, selectedDate: Date, event: Event): boolean => {
@@ -311,11 +313,23 @@ const EventsPage = () => {
 
   const handleEventSave = useCallback(
     (event: Event) => {
-      saveEvent(event);
-    },
-    [saveEvent]
-  );
+      // Assuming `isUserSignedIn` is a state or context variable that holds the user's sign-in status
+      if (!isUserSignedIn) {
+        alert("You must be signed in to save events.");
+        return;
+      }
 
+      saveEvent(event)
+        .then(() => {
+          alert("Event saved to your profile!");
+        })
+        .catch((error) => {
+          console.error("Error saving event:", error);
+          alert("There was a problem saving the event.");
+        });
+    },
+    [saveEvent, isUserSignedIn] // Include isUserSignedIn in the dependency array if it's a state or context variable
+  );
   const handleCityChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
       setSelectedCity(event.target.value);
@@ -337,6 +351,14 @@ const EventsPage = () => {
       datePickerRef.current.setOpen(true);
     }
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsUserSignedIn(!!user);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const fetchEvents = async () => {

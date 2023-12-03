@@ -20,14 +20,11 @@ export default function Footer() {
   }, [handleAuthStateChanged]);
 
   return (
-    <footer className="bg-gray-100 text-black text-center p-4 border-t-2 border-gray-300">
+    <footer className="bg-gray-300 text-black text-center p-4 border-2 border-gray-700">
       <div className="container mx-auto flex flex-col lg:flex-row justify-between">
         <div>
-          <h1 className="font-bold text-xl mb-2">Contact Us</h1>
-          <p className="flex items-center mb-2">
-            <EnvelopeIcon className="h-4 w-4 mr-1 ml-1" />
-            contact@openmicfinder.com
-          </p>
+          <h1 className="font-bold text-xl mb-2 mt-4 lg:mt-0">Contact Us</h1>
+          <p className=" text-md mb-2">💌 contact@openmicfinder.com</p>
           <a
             href="mailto:nitronate@gmail.com"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -36,7 +33,9 @@ export default function Footer() {
           </a>
         </div>
         <div className="text-center">
-          <h1 className="font-bold text-xl mb-2">Check Out Comedify!</h1>
+          <h1 className="font-bold text-xl mb-2 mt-4 lg:mt-0">
+            Check Out Comedify!
+          </h1>
           <p className="text-md font-bold mb-2">
             An app to interact with comicBot and write/store your jokes
           </p>
