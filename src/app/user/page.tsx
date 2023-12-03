@@ -17,6 +17,15 @@ export default function UserProfile() {
   const { saveEvent, savedEvents, deleteEvent } = useContext(EventContext);
   const auth = getAuth();
   const storage = getStorage();
+  const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsUserSignedIn(!!user);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -94,11 +103,20 @@ export default function UserProfile() {
   };
 
   const handleDeleteEvent = async (eventId: string) => {
-    await deleteEvent(eventId); // Call deleteEvent from context
-    // You might want to add some UI feedback or error handling here
+    try {
+      await deleteEvent(eventId); // Call deleteEvent from context
+      alert("Event deleted successfully");
+    } catch (error) {
+      console.error("Error deleting event:", error);
+      alert("Failed to delete the event. Please try again.");
+    }
   };
 
   const handleEdit = () => {
+    if (!isUserSignedIn) {
+      alert("You must be signed in to edit your profile.");
+      return;
+    }
     setIsEditing(true);
   };
 
