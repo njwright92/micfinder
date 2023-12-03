@@ -73,13 +73,15 @@ export default function Header() {
                 <span className="hidden md:inline-block">Sign In/Up</span>
               </button>
             )}
-            <Link
-              href="/user"
-              className="neu-button text-white px-1 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
-            >
-              <UserIcon className="inline-block h-4 w-4" />
-              <span className="hidden md:inline-block">Profile</span>
-            </Link>
+            {isUserSignedIn && (
+              <Link
+                href="/user"
+                className="neu-button text-white px-1 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+              >
+                <UserIcon className="inline-block h-4 w-4" />
+                <span className="hidden md:inline-block">Profile</span>
+              </Link>
+            )}
           </div>
         </nav>
       </header>
