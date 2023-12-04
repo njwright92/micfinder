@@ -34,7 +34,7 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold mb-4 underline text-blue-500">
           Promote Your Event:
         </h2>
-        <p>
+        <p className="mb-2">
           Got an open mic event? Let OpenMicFinder amplify your reach. With
           targeted advertising and visibility among a passionate audience, your
           event is set for greater engagement and success.
@@ -42,7 +42,7 @@ export default function HomePage() {
         <p className="mt-2">
           <a
             href="mailto:nitronate@gmail.com"
-            className="text-blue-500 hover:underline"
+            className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mt-4 rounded"
           >
             Contact me with questions or issues
           </a>
@@ -63,20 +63,18 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold mb-4 underline text-green-400">
           Explore Comedify:
         </h2>
-        <p>
+        <p className="mb-4">
           Dive into Comedify, the app with comicBot - a humorous, occasionally
           offensive LLM, and JokePad. It&apos;s the perfect companion for
           comedians looking to write, store, and refine their jokes. Get ready
           to laugh and be inspired!
         </p>
-        <p className="mt-1">
-          <a
+        <a
             href="https://comedify-54274.web.app/"
-            className="text-green-300 hover:underline"
+            className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mt-4 rounded"
           >
             Visit Comedify 😃
           </a>
-        </p>
       </section>
     </div>
   );

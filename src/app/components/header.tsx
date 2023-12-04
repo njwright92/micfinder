@@ -46,7 +46,7 @@ export default function Header() {
             className="neu-button ml-4 text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
           >
             <HomeModernIcon className="inline-block h-4 w-4" />
-            <span className="hidden md:inline-block">MicFinder</span>
+            <span className="sr-only md:not-sr-only">MicFinder</span>
           </Link>
 
           <div className="flex gap-2">
@@ -55,14 +55,14 @@ export default function Header() {
               className="neu-button px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
             >
               <InformationCircleIcon className="inline-block h-4 w-4" />
-              <span className="hidden md:inline-block">About</span>
+              <span className="sr-only md:not-sr-only">About</span>
             </Link>
             <Link
               href="/events"
               className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
             >
               <CalendarDaysIcon className="inline-block h-4 w-4" />
-              <span className="hidden md:inline-block">Events</span>
+              <span className="sr-only md:not-sr-only">Events</span>
             </Link>
             {!isUserSignedIn && (
               <button
@@ -70,7 +70,7 @@ export default function Header() {
                 className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
               >
                 <UserCircleIcon className="inline-block h-4 w-4" />
-                <span className="hidden md:inline-block">Sign In/Up</span>
+                <span className="sr-only md:not-sr-only">Sign In/Up</span>
               </button>
             )}
             {isUserSignedIn && (
@@ -79,7 +79,7 @@ export default function Header() {
                 className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
               >
                 <UserIcon className="inline-block h-4 w-4" />
-                <span className="hidden md:inline-block">Profile</span>
+                <span className="sr-only md:not-sr-only">Profile</span>
               </Link>
             )}
           </div>
