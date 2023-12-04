@@ -25,7 +25,7 @@ export default function UserProfile() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [auth]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -121,10 +121,8 @@ export default function UserProfile() {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-lg">
-      <h1 className="text-4xl text-center font-bold mb-6 text-blue-400">
-        User Profile
-      </h1>
+    <div className="container mx-auto text-center p-4 border-2 border-gray-400">
+      <h1 className="text-4xl font-bold mb-6 text-blue-400">User Profile</h1>
       <div className="user-card">
         {/* Profile Picture Section */}
         <div className="mb-6">
@@ -138,30 +136,33 @@ export default function UserProfile() {
                 name="profilePicture"
                 type="file"
                 onChange={handleImageChange}
-                className="standard-input"
               />
               {profileImage && (
-                <Image
-                  src={URL.createObjectURL(profileImage)}
-                  alt="Profile Preview"
-                  width={100}
-                  height={100}
-                  className="profile-image"
-                  priority
-                />
+                <div className="inline-block">
+                  <Image
+                    src={URL.createObjectURL(profileImage)}
+                    alt="Profile Preview"
+                    width={300}
+                    height={300}
+                    className="profile-image"
+                    priority
+                  />
+                </div>
               )}
             </>
           ) : (
             profileImageUrl && (
-              <Image
-                src={profileImageUrl}
-                alt="Profile Preview"
-                width={100}
-                height={100}
-                className="profile-image"
-                unoptimized
-                priority
-              />
+              <div className="inline-block">
+                <Image
+                  src={profileImageUrl}
+                  alt="Profile Preview"
+                  width={300}
+                  height={300}
+                  className="profile-image"
+                  unoptimized
+                  priority
+                />
+              </div>
             )
           )}
         </div>
@@ -181,7 +182,7 @@ export default function UserProfile() {
               className="standard-input"
             />
           ) : (
-            <p className="text-lg text-gray-800">{name}</p>
+            <p className="text-xl font-bold text-gray-900">{name}</p>
           )}
         </div>
 
@@ -199,7 +200,7 @@ export default function UserProfile() {
               className="standard-input h-24"
             />
           ) : (
-            <p className="text-gray-700">{bio}</p>
+            <p className="text-md text-gray-700">{bio}</p>
           )}
         </div>
 

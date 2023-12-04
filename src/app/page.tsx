@@ -2,7 +2,7 @@ import EventForm from "./components/EventForm";
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto text-center p-4 border-2 border-gray-400">
       <h1 className="text-4xl font-bold text-center mb-6 text-blue-400">
         Welcome to MicFinder!
       </h1>

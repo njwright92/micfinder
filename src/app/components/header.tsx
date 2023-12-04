@@ -39,11 +39,11 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-blue-900 text-white p-1">
+      <header className="bg-blue-900 text-white p-3 mx-auto">
         <nav className="container flex justify-between p-1">
           <Link
             href="/"
-            className="neu-button ml-4 text-white px-1 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+            className="neu-button ml-4 text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
           >
             <HomeModernIcon className="inline-block h-4 w-4" />
             <span className="hidden md:inline-block">MicFinder</span>
@@ -52,14 +52,14 @@ export default function Header() {
           <div className="flex gap-2">
             <Link
               href="/about"
-              className="neu-button px-1 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+              className="neu-button px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
             >
               <InformationCircleIcon className="inline-block h-4 w-4" />
               <span className="hidden md:inline-block">About</span>
             </Link>
             <Link
               href="/events"
-              className="neu-button text-white px-1 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+              className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
             >
               <CalendarDaysIcon className="inline-block h-4 w-4" />
               <span className="hidden md:inline-block">Events</span>
@@ -67,7 +67,7 @@ export default function Header() {
             {!isUserSignedIn && (
               <button
                 onClick={toggleAuthModal}
-                className="neu-button text-white px-1 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
               >
                 <UserCircleIcon className="inline-block h-4 w-4" />
                 <span className="hidden md:inline-block">Sign In/Up</span>
@@ -76,7 +76,7 @@ export default function Header() {
             {isUserSignedIn && (
               <Link
                 href="/user"
-                className="neu-button text-white px-1 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
               >
                 <UserIcon className="inline-block h-4 w-4" />
                 <span className="hidden md:inline-block">Profile</span>

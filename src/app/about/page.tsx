@@ -1,6 +1,6 @@
 export default function AboutPage() {
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto text-center p-4 border-2 border-gray-400">
       <h1 className="text-4xl text-center font-bold mb-6 text-blue-400">
         About MicFinder
       </h1>
