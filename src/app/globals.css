@@ -18,7 +18,7 @@
 
 @media (min-width: 970px) {
   .events-card {
-    @apply md:w-1/2; /* Tailwind class for 50% width on medium screens */
+    @apply md:w-1/2;
   }
 }
 
@@ -37,14 +37,14 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-serif font-bold; /* Tailwind classes for serif font and bold weight */
+  @apply font-serif font-bold;
 }
 
 p,
 li,
 span,
 div {
-  @apply font-sans text-base font-normal; /* Tailwind classes for sans-serif font, base size, and normal weight */
+  @apply font-sans text-base font-normal;
 }
 
 .neu-button {
@@ -52,11 +52,11 @@ div {
 }
 
 .neu-button:hover {
-  @apply -translate-y-1 shadow-lg; /* Tailwind classes for translate and shadow on hover */
+  @apply -translate-y-1 shadow-lg;
 }
 
 .neu-button:active {
-  @apply translate-y-0.5 shadow-md; /* Tailwind classes for translate and shadow on active */
+  @apply translate-y-0.5 shadow-md;
 }
 
 .modern-input {
@@ -64,7 +64,7 @@ div {
 }
 
 .modern-input:focus {
-  @apply outline-none border-blue-500 shadow-md; /* Tailwind classes for focus styles */
+  @apply outline-none border-blue-500 shadow-md;
 }
 
 .modern-input:hover {
@@ -167,12 +167,12 @@ div {
 
 .delete-button {
   @apply translate-y-0.5 shadow-md;
-  background-color: #f44336; /* Red background color */
-  color: #fff; /* White text color */
+  background-color: #f44336;
+  color: black;
   font-weight: bold;
-  padding: 0.3rem 0.7rem; /* Padding on top and bottom, and left and right */
-  border: .1rem solid black;
-  border-radius: 0.625rem; /* Rounded corners */
+  padding: 0.3rem 0.7rem;
+  border: 0.1rem solid black;
+  border-radius: 0.625rem;
   cursor: pointer;
   margin-top: 0.25rem;
   display: inline-flex;
@@ -181,5 +181,5 @@ div {
 
 .delete-button:hover {
   @apply -translate-y-1 shadow-lg;
-  background-color: #f87171; /* Darker red background color on hover */
+  background-color: #f87171;
 }
