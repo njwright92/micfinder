@@ -442,7 +442,9 @@ const EventsPage = () => {
           >
             Events List:
           </h2>
-          {filteredEvents.length > 0 ? (
+          {selectedCity === "" ? (
+            <p>Please select a city to see today&#39;s events.</p>
+          ) : filteredEvents.length > 0 ? (
             filteredEvents.map((event) => (
               <div key={event.id} className="event-item">
                 <h3 className="text-lg font-semibold">{event.name}</h3>

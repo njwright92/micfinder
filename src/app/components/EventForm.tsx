@@ -119,7 +119,7 @@ const EventForm: React.FC = () => {
           />
 
           <label htmlFor="location" className="the-text">
-            Location **Needs City State without comma**:
+            Location must include city state abbr ex(Spokane WA):
           </label>
           <input
             type="text"
@@ -170,6 +170,9 @@ const EventForm: React.FC = () => {
             required
           />
           <h6 className="the-text">Is it a recurring event?:</h6>
+          <p className="text-red-500">
+            If yes specify day of the week in details.
+          </p>
           <div className="flex flex-row">
             <div className="flex flex-col items-center mr-4">
               <label htmlFor="isRecurringYes" className="the-text">
