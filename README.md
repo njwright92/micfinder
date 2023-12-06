@@ -1,6 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-# OpenMicFinder - Your Open Mic Event Discovery Platform
+[![Website Status](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://micfinder-fb06f.web.app/)
+
+# MicFinder - Your Open Mic Event Discovery Platform
 
 OpenMicFinder is a web application that caters to upcoming and aspiring stand-up comedians by providing a platform to discover open mic events in their selected city. Also allows users to post their events increase advertising, and let locals find their events. This project is built using TypeScript and leverages Firebase/Firestore for data management, along with Google Cloud Platform Maps integration for location-based features.
 
