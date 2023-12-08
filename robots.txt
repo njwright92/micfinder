@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Disallow:
-
-Sitemap: https://micfinder-fb06f.web.app/sitemap.xml
