@@ -1,4 +1,9 @@
-import EventForm from "./components/EventForm";
+import dynamic from "next/dynamic";
+
+const EventForm = dynamic(() => import("./components/EventForm"), {
+  loading: () => <p>Loading form...</p>,
+  ssr: false,
+});
 
 export default function HomePage() {
   return (
@@ -70,11 +75,11 @@ export default function HomePage() {
           to laugh and be inspired!
         </p>
         <a
-            href="https://comedify-54274.web.app/"
-            className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mt-4 rounded"
-          >
-            Visit Comedify 😃
-          </a>
+          href="https://comedify-54274.web.app/"
+          className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mt-4 rounded"
+        >
+          Visit Comedify 😃
+        </a>
       </section>
     </div>
   );
