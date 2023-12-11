@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.2",
+    "@googlemaps/markerclustererplus": "^1.2.10",
     "@heroicons/react": "^2.0.18",
     "firebase": "^10.6.0",
     "firebaseui": "^6.1.0",
