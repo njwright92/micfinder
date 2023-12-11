@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { initializeApp, getApps } from "firebase/app";
-import { firebaseConfig } from "../../../firebase.config"; // Adjust the path as needed
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../firebase.config";
 import Link from "next/link";
 import AuthModal from "./authModal";
 import {
@@ -19,20 +18,11 @@ export default function Header() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Only run on the client side
-      if (!getApps().length) {
-        // Initialize Firebase only if it hasn't been initialized
-        initializeApp(firebaseConfig);
-      }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsUserSignedIn(!!user);
+    });
 
-      const auth = getAuth();
-      const unsubscribe = onAuthStateChanged(auth, async (user) => {
-        setIsUserSignedIn(!!user);
-      });
-
-      return () => unsubscribe(); // Clean up subscription
-    }
+    return () => unsubscribe();
   }, []);
 
   const toggleAuthModal = () => setIsAuthModalOpen(!isAuthModalOpen);
@@ -50,13 +40,6 @@ export default function Header() {
           </Link>
 
           <div className="flex gap-2">
-            <Link
-              href="/about"
-              className="neu-button px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
-            >
-              <InformationCircleIcon className="inline-block h-4 w-4" />
-              <span className="sr-only md:not-sr-only">About</span>
-            </Link>
             <Link
               href="/events"
               className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
@@ -82,6 +65,13 @@ export default function Header() {
                 <span className="sr-only md:not-sr-only">Profile</span>
               </Link>
             )}
+            <Link
+              href="/about"
+              className="neu-button px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+            >
+              <InformationCircleIcon className="inline-block h-4 w-4" />
+              <span className="sr-only md:not-sr-only">About</span>
+            </Link>
           </div>
         </nav>
       </header>
