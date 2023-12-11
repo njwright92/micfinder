@@ -19,6 +19,16 @@ export default function RootLayout({
     <EventProvider>
       <html lang="en">
         <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://www.googletagmanager.com/gtag/js?id=G-65JYZXX34C"
+          />
+          <link
+            rel="dns-prefetch"
+            href="https://www.googletagmanager.com/gtag/js?id=G-65JYZXX34C"
+          />
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="description" content="Find open mic events near you" />
