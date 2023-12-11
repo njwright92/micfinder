@@ -239,26 +239,26 @@ const EventsPage = () => {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
   const [allEvents, setAllEvents] = useState<Event[]>([]);
 
+  const fetchEvents = useCallback(async () => {
+    const querySnapshot = await getDocs(collection(db, "events"));
+    const fetchedEvents = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      location: doc.data().location,
+      name: doc.data().name,
+      date: doc.data().date.toDate().toLocaleDateString(),
+      details: doc.data().details,
+      lat: doc.data().lat,
+      lng: doc.data().lng,
+      isRecurring: doc.data().isRecurring,
+    }));
+
+    // Combine Firestore events with hardcoded events
+    setAllEvents([...mockEvents, ...fetchedEvents]);
+  }, []);
+
   useEffect(() => {
-    const fetchEvents = async () => {
-      const querySnapshot = await getDocs(collection(db, "events"));
-      const fetchedEvents = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        location: doc.data().location,
-        name: doc.data().name,
-        date: doc.data().date.toDate().toLocaleDateString(),
-        details: doc.data().details,
-        lat: doc.data().lat,
-        lng: doc.data().lng,
-        isRecurring: doc.data().isRecurring,
-      }));
-
-      // Combine Firestore events with hardcoded events
-      setAllEvents([...mockEvents, ...fetchedEvents]);
-    };
-
     fetchEvents();
-  }, [mockEvents]);
+  }, [fetchEvents]);
 
   const isRecurringEvent = useCallback(
     (eventDate: string, selectedDate: Date, event: Event): boolean => {
