@@ -50,6 +50,8 @@ const cityCoordinates: CityCoordinates = {
   "Hayden ID": { lat: 47.766, lng: -116.7866 },
   "Post Falls ID": { lat: 47.718, lng: -116.9516 },
   "Sandpoint ID": { lat: 48.2766, lng: -116.5535 },
+  "Cheney WA": { lat: 47.4894065, lng: -117.5800534 },
+  "Medical Lake WA": { lat: 47.5686687, lng: -117.703776 },
 };
 
 const mockEvents: Event[] = [
@@ -200,7 +202,7 @@ const mockEvents: Event[] = [
     id: "11",
     isRecurring: true,
     name: "3RD THURSDAY COMEDY OPEN MIC",
-    location: "Fox Hole Bar and Grill *Medical Lake* Spokane WA",
+    location: "Fox Hole Bar and Grill Medical Lake WA",
     date: "Thursday",
     lat: 47.5725708,
     lng: -117.6844563,
@@ -235,6 +237,28 @@ const EventsPage = () => {
   const [events, setEvents] = useState<Event[]>(mockEvents);
   const { saveEvent } = useContext(EventContext);
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+  const [allEvents, setAllEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const querySnapshot = await getDocs(collection(db, "events"));
+      const fetchedEvents = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        location: doc.data().location,
+        name: doc.data().name,
+        date: doc.data().date.toDate().toLocaleDateString(),
+        details: doc.data().details,
+        lat: doc.data().lat,
+        lng: doc.data().lng,
+        isRecurring: doc.data().isRecurring,
+      }));
+
+      // Combine Firestore events with hardcoded events
+      setAllEvents([...mockEvents, ...fetchedEvents]);
+    };
+
+    fetchEvents();
+  }, [mockEvents]);
 
   const isRecurringEvent = useCallback(
     (eventDate: string, selectedDate: Date, event: Event): boolean => {
@@ -400,7 +424,7 @@ const EventsPage = () => {
   return (
     <div className="container mx-auto text-center p-4 border-2 border-gray-400">
       <h1 className="text-4xl text-center font-bold mb-6 text-blue-400">
-        Open Mic Events
+        Open Mic Events!
       </h1>
       <p className="text-lg md:text-xl text-center mt-4 mb-2 text-gray-200">
         Got an amazing event coming up? Share it here and get the word out to
@@ -410,7 +434,9 @@ const EventsPage = () => {
         <MemoizedEventForm />
       </div>
       <h6 className="text-center mt-4">
-        Select your city and date to view events
+        Select your city and date to view events!
+        <br />
+        Or scroll down to see all events!
       </h6>
       <div className="flex flex-col justify-center items-center mt-2">
         <select
@@ -423,6 +449,8 @@ const EventsPage = () => {
           <option value="">Select a City</option>
           <option value="Spokane WA">Spokane, WA</option>
           <option value="Spokane Valley WA">Spokane Valley, WA</option>
+          <option value="Cheney WA">Cheney, WA</option>
+          <option value="Medical Lake WA">Medical Lake, WA</option>
           <option value="Coeur D'Alene ID">Coeur D&apos;Alene, ID</option>
           <option value="Hayden ID">Hayden, ID</option>
           <option value="Post Falls ID">PostFalls, ID</option>
@@ -487,6 +515,25 @@ const EventsPage = () => {
             events={filteredEvents}
           />
         </div>
+      </div>
+      <div className="events-card">
+        <h2
+          className="text-2xl font-semibold text-center"
+          style={{ borderBottom: "0.15rem solid #005eff" }}
+        >
+          All Events:
+        </h2>
+        {allEvents.map((event) => (
+          <div key={event.id} className="event-item">
+            <h3 className="text-lg font-semibold">{event.name}</h3>
+            <p className="font-bold">Date: {event.date}</p>
+            <p className="font-bold">Location: {event.location}</p>
+            <div className="details font-bold">
+              <span className="details-label">ℹ️ Details:</span>
+              <div dangerouslySetInnerHTML={{ __html: event.details }} />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
