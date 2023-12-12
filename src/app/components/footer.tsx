@@ -63,10 +63,10 @@ export default function Footer() {
         )}
         <button
           onClick={scrollToTop}
-          className="absolute bottom-4 right-4 m-2 bg-blue-700 hover:bg-blue-900 text-white font-bold py-1 px-2 rounded"
+          className="absolute bottom-8 right-4 m-2 neu-button py-2 px-2 rounded hover:bg-blue-600 transition-colors"
           aria-label="Back to top"
         >
-          <ArrowUpCircleIcon className="h-7 w-7" />
+          <ArrowUpCircleIcon className="h-8 w-8" />
         </button>
       </div>
     </footer>
