@@ -1,7 +1,7 @@
 export default function AboutPage() {
   return (
-    <div className="container mx-auto text-center p-4 border-2 border-gray-400">
-      <h1 className="text-4xl text-center font-bold mb-6 text-blue-400">
+    <div className="screen-container">
+      <h1 className="page-title">
         About MicFinder
       </h1>
       <p className="mb-4">
@@ -11,7 +11,7 @@ export default function AboutPage() {
         stand-up comedy to soulful music gigs, engaging poetry readings, and
         beyond.
       </p>
-      <h2 className="text-2xl font-semibold mb-4 underline text-blue-500">
+      <h2 className="title">
         What Drives Us
       </h2>
       <p className="mb-6">
@@ -20,7 +20,7 @@ export default function AboutPage() {
         facilitating a space where emerging talents can shine and audiences can
         indulge in diverse artistic expressions.
       </p>
-      <h2 className="text-2xl font-semibold mb-4 underline text-blue-500">
+      <h2 className="title">
         Get in Touch
       </h2>
       <p>

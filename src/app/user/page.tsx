@@ -30,7 +30,7 @@ export default function UserProfile() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // Fetch user profile data
+
         try {
           const userRef = doc(db, "users", user.uid);
           const docSnap = await getDoc(userRef);
@@ -44,14 +44,12 @@ export default function UserProfile() {
           console.error("Error fetching user data:", error);
         }
 
-        // Fetch and set events
         try {
           const userEventsRef = doc(db, "userEvents", user.uid);
           const docSnapEvents = await getDoc(userEventsRef);
           if (docSnapEvents.exists() && docSnapEvents.data().events) {
-            const eventsFromFirestore: Event[] = docSnapEvents.data().events; // Use Event type
+            const eventsFromFirestore: Event[] = docSnapEvents.data().events;
             eventsFromFirestore.forEach((event: Event) => {
-              // Specify type for event
               if (!savedEvents.some((e) => e.id === event.id)) {
                 saveEvent(event);
               }
@@ -73,7 +71,6 @@ export default function UserProfile() {
       const file = event.target.files[0];
       setProfileImage(file);
 
-      // Upload the file to Firebase Storage and get the URL
       const storageRef = ref(storage, `profileImages/${auth.currentUser?.uid}`);
       await uploadBytes(storageRef, file);
       const url = await getDownloadURL(storageRef);
@@ -94,7 +91,7 @@ export default function UserProfile() {
             profileImageUrl,
           },
           { merge: true }
-        ); // merge: true will update the document if it exists
+        ); 
         setIsEditing(false);
       } catch (error) {
         console.error("Error updating/creating profile:", error);
@@ -104,7 +101,7 @@ export default function UserProfile() {
 
   const handleDeleteEvent = async (eventId: string) => {
     try {
-      await deleteEvent(eventId); // Call deleteEvent from context
+      await deleteEvent(eventId);
       alert("Event deleted successfully");
     } catch (error) {
       console.error("Error deleting event:", error);
@@ -121,10 +118,10 @@ export default function UserProfile() {
   };
 
   return (
-    <div className="container mx-auto text-center p-4 border-2 border-gray-400">
-      <h1 className="text-4xl font-bold mb-6 text-blue-400">User Profile</h1>
+    <div className="screen-container">
+      <h1 className="page-title">User Profile</h1>
       <div className="user-card">
-        {/* Profile Picture Section */}
+        
         <div className="mb-6">
           <label htmlFor="profilePicture" className="the-text">
             Profile Picture:
@@ -167,7 +164,7 @@ export default function UserProfile() {
           )}
         </div>
 
-        {/* Name Section */}
+       
         <div className="mb-6">
           <label htmlFor="name" className="the-text">
             Name:
@@ -186,7 +183,7 @@ export default function UserProfile() {
           )}
         </div>
 
-        {/* Bio Section */}
+       
         <div className="mb-6">
           <label htmlFor="bio" className="the-text">
             Bio:
@@ -204,7 +201,7 @@ export default function UserProfile() {
           )}
         </div>
 
-        {/* Saved Events Section */}
+      
         <div className="mb-6">
           <h2 className="text-2xl text-black font-bold mb-4 event-card">
             Saved Events

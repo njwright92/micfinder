@@ -54,7 +54,7 @@ const EventForm: React.FC = () => {
         return;
       }
 
-      setFormErrors(""); // Clear any previous errors
+      setFormErrors("");
       try {
         await submitEvent(memoizedEvent);
         setShowModal(false);
@@ -73,7 +73,7 @@ const EventForm: React.FC = () => {
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = e.target;
 
-      // Convert value to a number for 'lat' and 'lng' fields
+   
       if (name === "lat" || name === "lng") {
         const numberValue = value === "" ? 0 : parseFloat(value);
         setEvent((prevEvent) => ({ ...prevEvent, [name]: numberValue }));

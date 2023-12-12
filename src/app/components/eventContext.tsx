@@ -37,13 +37,13 @@ type EventProviderProps = {
 export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
   const [savedEvents, setSavedEvents] = useState<Event[]>([]);
 
-  // Function to save event to Firestore
+
   const saveEventToFirestore = async (event: Event) => {
     const auth = getAuth();
     const user = auth.currentUser;
     if (!user) return;
 
-    // Check if the event already exists in the savedEvents array
+    
     const eventAlreadySaved = savedEvents.some((e) => e.id === event.id);
 
     if (!eventAlreadySaved) {
@@ -63,14 +63,13 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
       const userEventsRef = doc(db, "userEvents", user.uid);
       await setDoc(userEventsRef, { events: updatedEvents }, { merge: true });
       setSavedEvents(updatedEvents);
-      alert("Event deleted successfully."); // Success alert
+      alert("Event deleted successfully."); 
     } catch (error) {
       console.error("Error deleting event:", error);
-      alert("Error deleting event."); // Error alert
+      alert("Error deleting event."); 
     }
   };
 
-  // Function to fetch events from Firestore
   const fetchEventsFromFirestore = async () => {
     const auth = getAuth();
     const user = auth.currentUser;
@@ -83,27 +82,26 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
     }
   };
 
-  // useEffect to fetch events when component mounts
+
   useEffect(() => {
     fetchEventsFromFirestore();
   }, []);
 
-  // Updated saveEvent function
 const saveEvent = async (event: Event) => {
-  // Check if the event already exists in the savedEvents array
+
   const eventAlreadySaved = savedEvents.some((e) => e.id === event.id);
 
   if (eventAlreadySaved) {
     alert("This event is already saved.");
-    return; // Stop the function if the event is already saved
+    return;
   }
 
   try {
-    await saveEventToFirestore(event); // Save to Firestore
-    // Removed the success alert
+    await saveEventToFirestore(event);
+  
   } catch (error) {
     console.error("Error saving event:", error);
-    // Removed the error alert
+ 
   }
 };
 

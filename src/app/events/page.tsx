@@ -19,13 +19,13 @@ import { db, auth } from "../../../firebase.config";
 
 const GoogleMap = dynamic(() => import("../components/GoogleMap"), {
   loading: () => <p>Loading map...</p>,
-  ssr: false, // Assuming GoogleMap uses browser-specific APIs
+  ssr: false, 
 });
 
-// Lazy load EventForm
+
 const EventForm = dynamic(() => import("../components/EventForm"), {
   loading: () => <p>Loading form...</p>,
-  ssr: false, // Use this if EventForm is client-side only
+  ssr: false,
 });
 
 type Event = {
@@ -252,7 +252,6 @@ const EventsPage = () => {
       isRecurring: doc.data().isRecurring,
     }));
 
-    // Combine Firestore events with hardcoded events
     setAllEvents([...mockEvents, ...fetchedEvents]);
   }, []);
 
@@ -279,9 +278,9 @@ const EventsPage = () => {
         return false;
       }
 
-      // Handle special cases based on event ID
+      
       if (event.id === "12") {
-        // Every other Friday
+        
         const firstFriday = new Date(
           selectedDate.getFullYear(),
           selectedDate.getMonth(),
@@ -298,7 +297,7 @@ const EventsPage = () => {
       }
 
       if (event.id === "11") {
-        // Every third Thursday of the month
+      
         const thirdThursday = new Date(
           selectedDate.getFullYear(),
           selectedDate.getMonth(),
@@ -315,13 +314,12 @@ const EventsPage = () => {
         return selectedDate.getDate() === thirdThursday.getDate();
       }
 
-      // Default Open Mic recurrence
       if (event.id === "5") {
         const weekOfMonth = Math.floor((selectedDate.getDate() - 1) / 7) + 1;
         return weekOfMonth === 2 || weekOfMonth === 4;
       }
 
-      return true; // Default case for other events
+      return true;
     },
     []
   );
@@ -331,9 +329,8 @@ const EventsPage = () => {
       const isInSelectedCity =
         selectedCity === "" || event.location.includes(selectedCity);
 
-      // Normalize dates for comparison
       const eventDate = new Date(event.date);
-      eventDate.setHours(0, 0, 0, 0); // Set time to start of the day
+      eventDate.setHours(0, 0, 0, 0);
       const normalizedSelectedDate = new Date(selectedDate);
       normalizedSelectedDate.setHours(0, 0, 0, 0);
 
@@ -347,7 +344,7 @@ const EventsPage = () => {
 
   const handleEventSave = useCallback(
     (event: Event) => {
-      // Assuming `isUserSignedIn` is a state or context variable that holds the user's sign-in status
+      
       if (!isUserSignedIn) {
         alert("You must be signed in to save events.");
         return;
@@ -362,7 +359,7 @@ const EventsPage = () => {
           alert("There was a problem saving the event.");
         });
     },
-    [saveEvent, isUserSignedIn] // Include isUserSignedIn in the dependency array if it's a state or context variable
+    [saveEvent, isUserSignedIn]
   );
   const handleCityChange = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -399,7 +396,7 @@ const EventsPage = () => {
       const querySnapshot = await getDocs(collection(db, "events"));
       const fetchedEvents = querySnapshot.docs.map((doc) => {
         const eventData = doc.data();
-        // Convert Firestore timestamp to JavaScript Date object
+        
         eventData.date = eventData.date.toDate();
         return {
           id: doc.id,
@@ -422,10 +419,8 @@ const EventsPage = () => {
   const MemoizedEventForm = React.memo(EventForm);
 
   return (
-    <div className="container mx-auto text-center p-4 border-2 border-gray-400">
-      <h1 className="text-4xl text-center font-bold mb-6 text-blue-400">
-        Open Mic Events!
-      </h1>
+    <div className="screen-container">
+      <h1 className="page-title">Open Mic Events!</h1>
       <p className="text-lg md:text-xl text-center mt-4 mb-2 text-gray-200">
         Got an amazing event coming up? Share it here and get the word out to
         the local community!
@@ -475,7 +470,7 @@ const EventsPage = () => {
         {/* Event List */}
         <div className="events-card">
           <h2
-            className="text-2xl font-semibold text-center"
+            className="title text-center"
             style={{ borderBottom: "0.15rem solid #005eff" }}
           >
             Events List:
@@ -518,7 +513,7 @@ const EventsPage = () => {
       </div>
       <div className="events-card">
         <h2
-          className="text-2xl font-semibold text-center"
+          className="title text-center"
           style={{ borderBottom: "0.15rem solid #005eff" }}
         >
           All Events:

@@ -1,4 +1,3 @@
-// ToggleSwitch.tsx
 import React from "react";
 
 type ToggleSwitchProps = {

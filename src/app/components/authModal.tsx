@@ -15,7 +15,7 @@ type AuthModalProps = {
 };
 
 const emailRegex = /\S+@\S+\.\S+/;
-const passwordRegex = /.{6,}/; // At least 6 characters
+const passwordRegex = /.{6,}/;
 
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [ui, setUi] = useState<firebaseui.auth.AuthUI | null>(null);
@@ -54,7 +54,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
       onClose();
     } catch (error) {
       if (error instanceof Error) {
-        // Specific error messages based on error code
+      
         switch ((error as AuthError).code) {
           case "auth/email-already-in-use":
             alert(
@@ -73,7 +73,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (typeof window === "undefined" || !isOpen) {
-      return; // Skip FirebaseUI initialization on server side or if modal is not open
+      return; 
     }
 
     import("firebaseui").then((firebaseUiModule) => {
@@ -89,7 +89,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         callbacks: {
           signInSuccessWithAuthResult: () => {
             onClose();
-            return true; // Redirect happens automatically
+            return true;
           },
           uiShown: () => {
             const loader = document.getElementById("loader");
