@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -24,56 +24,58 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isSignUp, setIsSignUp] = useState<boolean>(true);
 
-  const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const auth = getAuth();
+  const handleAuth = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const auth = getAuth();
 
-    if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address.");
-      return;
-    }
-
-    if (!passwordRegex.test(password)) {
-      alert("Password must be at least 6 characters.");
-      return;
-    }
-
-    if (isSignUp && password !== confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
-
-    try {
-      if (isSignUp) {
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("Signed up successfully! Please update your profile.");
-      } else {
-        await signInWithEmailAndPassword(auth, email, password);
-        alert("Signed in successfully!");
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
       }
-      onClose();
-    } catch (error) {
-      if (error instanceof Error) {
-      
-        switch ((error as AuthError).code) {
-          case "auth/email-already-in-use":
-            alert(
-              "Email already in use. Please sign in or use a different email."
-            );
-            break;
-          case "auth/wrong-password":
-            alert("Incorrect password. Please try again.");
-            break;
-          default:
-            alert(`Error: ${error.message}`);
+
+      if (!passwordRegex.test(password)) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
+
+      if (isSignUp && password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      try {
+        if (isSignUp) {
+          await createUserWithEmailAndPassword(auth, email, password);
+          alert("Signed up successfully! Please update your profile.");
+        } else {
+          await signInWithEmailAndPassword(auth, email, password);
+          alert("Signed in successfully!");
+        }
+        onClose();
+      } catch (error) {
+        if (error instanceof Error) {
+          switch ((error as AuthError).code) {
+            case "auth/email-already-in-use":
+              alert(
+                "Email already in use. Please sign in or use a different email."
+              );
+              break;
+            case "auth/wrong-password":
+              alert("Incorrect password. Please try again.");
+              break;
+            default:
+              alert(`Error: ${error.message}`);
+          }
         }
       }
-    }
-  };
+    },
+    [email, password, confirmPassword, isSignUp, onClose]
+  );
 
   useEffect(() => {
     if (typeof window === "undefined" || !isOpen) {
-      return; 
+      return;
     }
 
     import("firebaseui").then((firebaseUiModule) => {
