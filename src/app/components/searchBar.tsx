@@ -31,6 +31,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
       <button
         onClick={() => setInputVisible(!isInputVisible)}
         className="ml-2 px-2 py-1 bg-white text-black rounded-full"
+        aria-label="Toggle search"
       >
         <MagnifyingGlassIcon className="h-7 w-7" />
       </button>
