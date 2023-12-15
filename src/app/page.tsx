@@ -8,9 +8,7 @@ const EventForm = dynamic(() => import("./components/EventForm"), {
 export default function HomePage() {
   return (
     <div className="screen-container">
-      <h1 className="page-title">
-        Welcome to MicFinder!
-      </h1>
+      <h1 className="page-title">Welcome to MicFinder!</h1>
       <p className="text-center mb-4">
         Discover and share open mic events - your stepping stone in the world of
         stand-up comedy and live performances.

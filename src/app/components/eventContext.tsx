@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useState, useEffect, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useContext,
+} from "react";
 import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase.config";
@@ -19,7 +25,7 @@ export type Event = {
 interface EventContextType {
   savedEvents: Event[];
   saveEvent: (event: Event) => Promise<void>;
-  deleteEvent: (eventId: string) => Promise<void>; // New method for deleting an event
+  deleteEvent: (eventId: string) => Promise<void>;
 }
 
 const defaultContextValue: EventContextType = {
@@ -37,13 +43,11 @@ type EventProviderProps = {
 export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
   const [savedEvents, setSavedEvents] = useState<Event[]>([]);
 
-
   const saveEventToFirestore = async (event: Event) => {
     const auth = getAuth();
     const user = auth.currentUser;
     if (!user) return;
 
-    
     const eventAlreadySaved = savedEvents.some((e) => e.id === event.id);
 
     if (!eventAlreadySaved) {
@@ -63,10 +67,10 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
       const userEventsRef = doc(db, "userEvents", user.uid);
       await setDoc(userEventsRef, { events: updatedEvents }, { merge: true });
       setSavedEvents(updatedEvents);
-      alert("Event deleted successfully."); 
+      alert("Event deleted successfully.");
     } catch (error) {
       console.error("Error deleting event:", error);
-      alert("Error deleting event."); 
+      alert("Error deleting event.");
     }
   };
 
@@ -82,29 +86,24 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
     }
   };
 
-
   useEffect(() => {
     fetchEventsFromFirestore();
   }, []);
 
-const saveEvent = async (event: Event) => {
+  const saveEvent = async (event: Event) => {
+    const eventAlreadySaved = savedEvents.some((e) => e.id === event.id);
 
-  const eventAlreadySaved = savedEvents.some((e) => e.id === event.id);
+    if (eventAlreadySaved) {
+      alert("This event is already saved.");
+      return;
+    }
 
-  if (eventAlreadySaved) {
-    alert("This event is already saved.");
-    return;
-  }
-
-  try {
-    await saveEventToFirestore(event);
-  
-  } catch (error) {
-    console.error("Error saving event:", error);
- 
-  }
-};
-
+    try {
+      await saveEventToFirestore(event);
+    } catch (error) {
+      console.error("Error saving event:", error);
+    }
+  };
 
   return (
     <EventContext.Provider
@@ -113,6 +112,13 @@ const saveEvent = async (event: Event) => {
       {children}
     </EventContext.Provider>
   );
+};
+export const useEvents = () => {
+  const context = useContext(EventContext);
+  if (!context) {
+    throw new Error("useEvents must be used within an EventProvider");
+  }
+  return context;
 };
 
 export { EventContext };

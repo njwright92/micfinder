@@ -30,7 +30,6 @@ export default function UserProfile() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-
         try {
           const userRef = doc(db, "users", user.uid);
           const docSnap = await getDoc(userRef);
@@ -91,7 +90,7 @@ export default function UserProfile() {
             profileImageUrl,
           },
           { merge: true }
-        ); 
+        );
         setIsEditing(false);
       } catch (error) {
         console.error("Error updating/creating profile:", error);
@@ -121,7 +120,6 @@ export default function UserProfile() {
     <div className="screen-container">
       <h1 className="page-title">User Profile</h1>
       <div className="user-card">
-        
         <div className="mb-6">
           <label htmlFor="profilePicture" className="the-text">
             Profile Picture:
@@ -164,7 +162,6 @@ export default function UserProfile() {
           )}
         </div>
 
-       
         <div className="mb-6">
           <label htmlFor="name" className="the-text">
             Name:
@@ -183,7 +180,6 @@ export default function UserProfile() {
           )}
         </div>
 
-       
         <div className="mb-6">
           <label htmlFor="bio" className="the-text">
             Bio:
@@ -201,7 +197,6 @@ export default function UserProfile() {
           )}
         </div>
 
-      
         <div className="mb-6">
           <h2 className="text-2xl text-black font-bold mb-4 event-card">
             Saved Events

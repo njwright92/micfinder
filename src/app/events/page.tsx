@@ -19,9 +19,8 @@ import { db, auth } from "../../../firebase.config";
 
 const GoogleMap = dynamic(() => import("../components/GoogleMap"), {
   loading: () => <p>Loading map...</p>,
-  ssr: false, 
+  ssr: false,
 });
-
 
 const EventForm = dynamic(() => import("../components/EventForm"), {
   loading: () => <p>Loading form...</p>,
@@ -238,6 +237,23 @@ const EventsPage = () => {
   const { saveEvent } = useContext(EventContext);
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
   const [allEvents, setAllEvents] = useState<Event[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryTerm = urlParams.get("searchTerm");
+    const city = urlParams.get("city");
+
+    if (city) {
+      setSelectedCity(city);
+    }
+
+    if (queryTerm) {
+      setSearchTerm(queryTerm);
+    } else {
+      setSearchTerm("");
+    }
+  }, []);
 
   const fetchEvents = useCallback(async () => {
     const querySnapshot = await getDocs(collection(db, "events"));
@@ -278,9 +294,7 @@ const EventsPage = () => {
         return false;
       }
 
-      
       if (event.id === "12") {
-        
         const firstFriday = new Date(
           selectedDate.getFullYear(),
           selectedDate.getMonth(),
@@ -297,7 +311,6 @@ const EventsPage = () => {
       }
 
       if (event.id === "11") {
-      
         const thirdThursday = new Date(
           selectedDate.getFullYear(),
           selectedDate.getMonth(),
@@ -326,25 +339,31 @@ const EventsPage = () => {
 
   const filteredEvents = useMemo(() => {
     return events.filter((event) => {
+      // Check if the event matches the selected city
       const isInSelectedCity =
         selectedCity === "" || event.location.includes(selectedCity);
 
+      // Check if the event matches the selected date
       const eventDate = new Date(event.date);
       eventDate.setHours(0, 0, 0, 0);
       const normalizedSelectedDate = new Date(selectedDate);
       normalizedSelectedDate.setHours(0, 0, 0, 0);
-
       const isOnSelectedDate = event.isRecurring
         ? isRecurringEvent(event.date, selectedDate, event)
         : eventDate.toDateString() === normalizedSelectedDate.toDateString();
 
-      return isInSelectedCity && isOnSelectedDate;
+      // Check if the event matches the search term
+      const matchesSearchTerm = searchTerm
+        ? event.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          event.location.toLowerCase().includes(searchTerm.toLowerCase())
+        : true;
+
+      return isInSelectedCity && isOnSelectedDate && matchesSearchTerm;
     });
-  }, [events, selectedCity, selectedDate, isRecurringEvent]);
+  }, [events, selectedCity, selectedDate, isRecurringEvent, searchTerm]);
 
   const handleEventSave = useCallback(
     (event: Event) => {
-      
       if (!isUserSignedIn) {
         alert("You must be signed in to save events.");
         return;
@@ -396,7 +415,7 @@ const EventsPage = () => {
       const querySnapshot = await getDocs(collection(db, "events"));
       const fetchedEvents = querySnapshot.docs.map((doc) => {
         const eventData = doc.data();
-        
+
         eventData.date = eventData.date.toDate();
         return {
           id: doc.id,
