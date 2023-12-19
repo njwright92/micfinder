@@ -27,14 +27,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-300 text-black mx-auto text-center p-4 border-2 border-gray-400">
+    <footer className="bg-gray-100 text-black mx-auto text-center p-4 border-2 border-black">
       <div className="container mx-auto flex flex-col lg:flex-row justify-between relative">
         <div>
           <h1 className="font-bold text-xl mb-2 mt-4 lg:mt-0">Contact Us</h1>
           <p className=" text-md mb-2">💌 contact@openmicfinder.com</p>
           <a
             href="mailto:nitronate@gmail.com"
-            className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mt-2rounded"
+            className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mt-2 rounded"
           >
             Email Me
           </a>
@@ -63,7 +63,7 @@ export default function Footer() {
         )}
         <button
           onClick={scrollToTop}
-          className="absolute bottom-8 right-4 m-2 neu-button py-2 px-2 rounded hover:bg-blue-600 transition-colors"
+          className="absolute bottom-8 right-4 m-2 neu-button py-2 px-2 rounded hover:bg-red-600 transition-colors"
           aria-label="Back to top"
         >
           <ArrowUpCircleIcon className="h-8 w-8" />

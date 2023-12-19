@@ -16,25 +16,35 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   };
 
   return (
-    <div className="flex items-center">
+    <div className="relative">
+      <button
+        onClick={() => setInputVisible(!isInputVisible)}
+        className="px-2 py-1 bg-white text-black rounded-full"
+        aria-label="Toggle search"
+      >
+        <MagnifyingGlassIcon className="h-7 w-7" />
+      </button>
+
       {isInputVisible && (
-        <form onSubmit={handleSearch} className="flex items-center">
+        <form
+          onSubmit={handleSearch}
+          className="flex items-center absolute top-full mt-1 left-0"
+        >
           <input
             type="text"
             placeholder="Search city to view events.."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="px-2 py-1 rounded-l-lg text-black"
+            className="px-2 py-1 rounded-l-lg text-black w-64"
           />
+          <button
+            type="submit"
+            className=" ml-1 px-2 py-1 bg-white text-black rounded"
+          >
+            Search
+          </button>
         </form>
       )}
-      <button
-        onClick={() => setInputVisible(!isInputVisible)}
-        className="ml-2 px-2 py-1 bg-white text-black rounded-full"
-        aria-label="Toggle search"
-      >
-        <MagnifyingGlassIcon className="h-7 w-7" />
-      </button>
     </div>
   );
 }

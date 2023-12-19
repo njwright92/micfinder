@@ -43,14 +43,27 @@ type CityCoordinates = {
 };
 
 const cityCoordinates: CityCoordinates = {
-  "Spokane WA": { lat: 47.6588, lng: -117.426 },
-  "Spokane Valley WA": { lat: 47.6733, lng: -117.2394 },
+  "Los Angeles CA": { lat: 34.0522, lng: -118.2437 },
+  "San Diego CA": { lat: 32.7157, lng: -117.1611 },
+  "San Francisco CA": { lat: 37.7749, lng: -122.4194 },
+  "Miami FL": { lat: 25.7617, lng: -80.1918 },
+  "Maui HA": { lat: 20.7984, lng: -156.3319 },
+  "Boise ID": { lat: 43.615, lng: -116.2023 },
   "Coeur D'Alene ID": { lat: 47.6777, lng: -116.7805 },
   "Hayden ID": { lat: 47.766, lng: -116.7866 },
+  "Moscow ID": { lat: 46.7324, lng: -117.0002 },
   "Post Falls ID": { lat: 47.718, lng: -116.9516 },
   "Sandpoint ID": { lat: 48.2766, lng: -116.5535 },
+  "Boston MA": { lat: 42.3601, lng: -71.0589 },
+  "New York City NY": { lat: 40.7128, lng: -74.006 },
+  "Portland OR": { lat: 45.5051, lng: -122.675 },
+  "Austin TX": { lat: 30.2672, lng: -97.7431 },
+  "Salt Lake City UT": { lat: 40.7608, lng: -111.891 },
   "Cheney WA": { lat: 47.4894065, lng: -117.5800534 },
   "Medical Lake WA": { lat: 47.5686687, lng: -117.703776 },
+  "Seattle WA": { lat: 47.6062, lng: -122.3321 },
+  "Spokane Valley WA": { lat: 47.6733, lng: -117.2394 },
+  "Spokane WA": { lat: 47.6588, lng: -117.426 },
 };
 
 const mockEvents: Event[] = [
@@ -226,6 +239,20 @@ const mockEvents: Event[] = [
       View on Google Maps
     </a>
   `,
+  },
+  {
+    id: "13",
+    isRecurring: true,
+    name: "Open Mic Night..",
+    location: "Tervan Tavern, 411 Cedar St, Sandpoint ID",
+    date: "Wednesday",
+    lat: 48.2759385,
+    lng: -116.6349728,
+    details: `
+      Open Mic Night. Bring your talent in front of a live audience with a chill vibe. Be it song, instrument, comedy, improv, or magic, come show it off. Hosted by the Tervan Tavern, 411 Cedar St. starting at 6:00(ish) p.m. on Wednesdays.
+      Visit <a href="https://tervantavern.com/" target="_blank" style="text-decoration: underline; color: blue;">Tervan Tavern</a> for more info.
+      <a href="https://www.google.com/maps/dir//411+Cedar+St,+Sandpoint,+ID+83864/@48.2759385,-116.6349728,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x5363d6c8c06638a5:0x9a6ea93138ab0076!2m2!1d-116.5525742!2d48.2759868?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
+    `,
   },
 ];
 
@@ -461,14 +488,27 @@ const EventsPage = () => {
           className="modern-input max-w-xs mx-auto"
         >
           <option value="">Select a City</option>
-          <option value="Spokane WA">Spokane, WA</option>
-          <option value="Spokane Valley WA">Spokane Valley, WA</option>
+          <option value="Los Angeles CA">Los Angeles, CA</option>
+          <option value="San Diego CA">San Diego, CA</option>
+          <option value="San Francisco CA">San Francisco, CA</option>
+          <option value="Miami FL">Miami, FL</option>
+          <option value="Maui HA">Maui, HA</option>
+          <option value="Boise ID">Boise, ID</option>
+          <option value="Coeur D'Alene ID">Coeur D'Alene, ID</option>
+          <option value="Hayden ID">Hayden, ID</option>
+          <option value="Moscow ID">Moscow, ID</option>
+          <option value="Post Falls ID">Post Falls, ID</option>
+          <option value="Sandpoint ID">Sandpoint, ID</option>
+          <option value="Boston MA">Boston, MA</option>
+          <option value="New York City NY">New York City, NY</option>
+          <option value="Portland OR">Portland, OR</option>
+          <option value="Austin TX">Austin, TX</option>
+          <option value="Salt Lake City UT">Salt Lake City, UT</option>
           <option value="Cheney WA">Cheney, WA</option>
           <option value="Medical Lake WA">Medical Lake, WA</option>
-          <option value="Coeur D'Alene ID">Coeur D&apos;Alene, ID</option>
-          <option value="Hayden ID">Hayden, ID</option>
-          <option value="Post Falls ID">PostFalls, ID</option>
-          <option value="Sandpoint ID">Sandpoint, ID</option>
+          <option value="Seattle WA">Seattle, WA</option>
+          <option value="Spokane Valley WA">Spokane Valley, WA</option>
+          <option value="Spokane WA">Spokane, WA</option>
         </select>
         <div className="relative mt-2">
           <ReactDatePicker

@@ -11,7 +11,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 30, 50, 50;
+    --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
 }
@@ -189,15 +189,16 @@ div {
   font-weight: 700;
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #60a5fa;
+  color: #e53e3e; /* A bright red shade */
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #3182ce;
+  color: #c53030; /* A darker red shade */
 }
+
 
 .screen-container {
   max-width: 100%;
@@ -205,5 +206,5 @@ div {
   margin-right: auto;
   text-align: center;
   padding: 1rem;
-  border: 0.125rem solid #d1d5db;
+  border: 0.125rem solid white;
 }

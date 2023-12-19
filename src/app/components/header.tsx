@@ -58,7 +58,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-blue-900 text-white p-3 mx-auto sticky top-0">
+      <header className="bg-red-900 text-white p-3 mx-auto sticky top-0">
         <nav className="container flex justify-between items-center p-1">
           <Link
             href="/"
