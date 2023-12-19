@@ -70,60 +70,6 @@ const mockEvents: Event[] = [
   {
     id: "1",
     isRecurring: true,
-    name: "New Talent Tuesday!",
-    location: "Spokane Comedy Club, Spokane WA",
-    date: "Tuesday",
-    lat: 47.657017,
-    lng: -117.4193719,
-    details: `
-      Every Tuesday, Featuring: Amateur and Professional comedians trying out new material. Free admission. Shows starting at 9:30pm or later are 21+, earlier shows are 18+ with valid ID. 
-      Visit <a href="https://www.spokanecomedyclub.com/" target="_blank" style="text-decoration: underline; color: blue;">Spokane Comedy Club</a> for more info. 
-      <a href="https://www.google.com/maps/place/Spokane+Comedy+Club/@47.657017,-117.4193719,17z/data=!3m1!4b1!4m6!3m5!1s0x549e1861e8e0198d:0xba09c4ee88e9b25e!8m2!3d47.657017!4d-117.416797!16s%2Fg%2F11cm6j1zpw?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
-    `,
-  },
-  {
-    id: "2",
-    isRecurring: true,
-    name: "Open Mic Night!",
-    location: "Spokane Comedy Club, Spokane WA",
-    date: "Wednesday",
-    lat: 47.657017,
-    lng: -117.4193719,
-    details: `
-      Every Wednesday, A night with professional and first-time comedians. Free admission. Happy hour all night. 
-      Sign-up for comedians available at <a href="https://www.barkentertainment.com/open-mic" target="_blank" style="text-decoration: underline; color: blue;">openmicer.com</a>. 
-      <a href="https://www.google.com/maps/place/Spokane+Comedy+Club/@47.657017,-117.4193719,17z/data=!3m1!4b1!4m6!3m5!1s0x549e1861e8e0198d:0xba09c4ee88e9b25e!8m2!3d47.657017!4d-117.416797!16s%2Fg%2F11cm6j1zpw?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
-    `,
-  },
-  {
-    id: "3",
-    isRecurring: true,
-    name: "Open Mic Stand Up Comedy!",
-    location: "The Draft Zone, Post Falls ID",
-    date: "Thursday",
-    lat: 47.7057509,
-    lng: -117.0270137,
-    details: `
-      Weekly open mic stand-up comedy event. Every Thursday through 1/24. Free admission. 
-      Visit <a href="https://draftzonepf.com" target="_blank" style="text-decoration: underline; color: blue;">Draft Zone </a> for more info. <a href="https://www.google.com/maps/place/The+Draft+Zone/@47.7057509,-117.0270137,15z/data=!3m1!4b1!4m6!3m5!1s0x5361ddbc4da8868b:0xc1f752f8c519f0f4!8m2!3d47.7057379!4d-117.0085598!16s%2Fg%2F11gy3bsw8c?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
-    `,
-  },
-  {
-    id: "4",
-    isRecurring: true,
-    name: "Quincy Belt Tournament of Champions!",
-    location: "The Draft Zone, Post Falls ID",
-    date: "Thursday",
-    lat: 47.7057509,
-    lng: -117.0270137,
-    details: `Post Falls, ID. Entry: Online/In Person. Free entry, no content restrictions. 
-    Qualify by winning the "Quincy Belt" at the open mic (Thursdays) or via video submission by 12/14. 
-    Semifinals: 2/3/24, 3/2/24, 4/6/24, 5/4/24. Finals: 6/1/24. Prizes: 1st - $1000, 2nd - $500, 3rd/4th - $250 each. 
-    Email: jaybergcomedy@gmail.com for details and entries. visit <a href="https://draftzonepf.com" target="_blank" style="text-decoration: underline; color: blue;">Draft Zone </a> for more info. <a href="https://www.google.com/maps/place/The+Draft+Zone/@47.7057509,-117.0270137,15z/data=!3m1!4b1!4m6!3m5!1s0x5361ddbc4da8868b:0xc1f752f8c519f0f4!8m2!3d47.7057379!4d-117.0085598!16s%2Fg%2F11gy3bsw8c?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.`,
-  },
-  {
-    id: "5",
-    isRecurring: true,
     name: "Open Mic",
     location:
       "The Goody Bar and Grill, 8712 E SPRAGUE AVE #1000, Spokane Valley WA",
@@ -137,51 +83,21 @@ const mockEvents: Event[] = [
     `,
   },
   {
-    id: "6",
+    id: "2",
     isRecurring: true,
-    name: "Stand Up Comedy Open Mic",
-    location: "Spikes on 718 E Francis Spokane WA",
-    date: "Saturday",
-    lat: 47.7147076,
-    lng: -117.4008385,
+    name: "New Talent Tuesday!",
+    location: "Spokane Comedy Club, Spokane WA",
+    date: "Tuesday",
+    lat: 47.657017,
+    lng: -117.4193719,
     details: `
-      Hosted by Anthony Singleton. Every Saturday at 7:00 PM. For more information follow @AnthonySingleton on social media. 
-      <a href="https://www.google.com/maps/place/Spike's+Spokane/@47.7147076,-117.4008385,17z/data=!3m1!4b1!4m6!3m5!1s0x549e1eb3e673dd89:0xb506914f6e09b6e2!8m2!3d47.714704!4d-117.3982636!16s%2Fg%2F11_fkyq8p?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
+      Every Tuesday, Featuring: Amateur and Professional comedians trying out new material. Free admission. Shows starting at 9:30pm or later are 21+, earlier shows are 18+ with valid ID. 
+      Visit <a href="https://www.spokanecomedyclub.com/" target="_blank" style="text-decoration: underline; color: blue;">Spokane Comedy Club</a> for more info. 
+      <a href="https://www.google.com/maps/place/Spokane+Comedy+Club/@47.657017,-117.4193719,17z/data=!3m1!4b1!4m6!3m5!1s0x549e1861e8e0198d:0xba09c4ee88e9b25e!8m2!3d47.657017!4d-117.416797!16s%2Fg%2F11cm6j1zpw?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
     `,
   },
   {
-    id: "7",
-    isRecurring: true,
-    name: "Open Mic Night at The Grain Shed",
-    location: "The Grain Shed Taproom Spokane WA",
-    date: "Friday",
-    lat: 47.6561077,
-    lng: -117.4348802,
-    details: `
-    Hosted by Anthony Singleton. Open Mic Night for music and comedy. 
-    Every Friday from 5:30 PM to 8:30ish PM. All ages welcome. Clean mic. Free admission. 
-    <a href="https://www.google.com/maps/place/The+Grain+Shed+Taproom/@47.6561077,-117.4348802,17z/data=!3m2!4b1!5s0x549e18680a2601e7:0x1a13f3af47308d34!4m6!3m5!1s0x549e194b26b6f1a1:0x6df1cdc8cd28c935!8m2!3d47.6561041!4d-117.4323053!16s%2Fg%2F11thk6c6yx?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
-      View on Google Maps
-    </a>
-  `,
-  },
-  {
-    id: "8",
-    isRecurring: true,
-    name: "QUEER COMEDY NIGHT",
-    location: "nYne Bar & Bistro Spokane WA",
-    date: "Tuesday",
-    lat: 47.6573563,
-    lng: -117.4147831,
-    details: `
-    Signup in person at 7:30pm. starts at 8pm. nYne is one of our local gay bars, so any and all comics who identify as LGBTQIA+ are strongly encouraged to go. This open mic is one of 3 that are on Tuesday nights, so if you're looking to string performances together, don't miss it! Queer allies are also welcome! <a href="https://www.nynebar.com/>nynebar.com</a>
-    <a href="https://www.google.com/maps/place/nYne+Bar+%26+Bistro/@47.6573563,-119.1693299,8z/data=!4m10!1m2!2m1!1sn9ne+bistro!3m6!1s0x549e188a0e23298d:0xe96a55dc6ee16314!8m2!3d47.6573563!4d-117.4147831!15sCgtuOW5lIGJpc3Ryb1oNIgtuOW5lIGJpc3Ryb5IBDmdheV9uaWdodF9jbHVimgEkQ2hkRFNVaE5NRzluUzBWSlEwRm5TVU56Y1hOdU0zRlJSUkFC4AEA!16s%2Fg%2F1vzv3cvm?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
-      View on Google Maps
-    </a>
-  `,
-  },
-  {
-    id: "9",
+    id: "3",
     isRecurring: true,
     name: "T'S ON A TUESDAY",
     location: "T's Lounge Spokane WA",
@@ -196,7 +112,76 @@ const mockEvents: Event[] = [
   `,
   },
   {
-    id: "10",
+    id: "4",
+    isRecurring: true,
+    name: "QUEER COMEDY NIGHT",
+    location: "nYne Bar & Bistro Spokane WA",
+    date: "Tuesday",
+    lat: 47.6573563,
+    lng: -117.4147831,
+    details: `
+    Signup in person at 7:30pm. starts at 8pm. nYne is one of our local gay bars, so any and all comics who identify as LGBTQIA+ are strongly encouraged to go. This open mic is one of 3 that are on Tuesday nights, so if you're looking to string performances together, don't miss it! Queer allies are also welcome! <a href="https://www.nynebar.com/>nynebar.com</a>
+    <a href="https://www.google.com/maps/place/nYne+Bar+%26+Bistro/@47.6573563,-119.1693299,8z/data=!4m10!1m2!2m1!1sn9ne+bistro!3m6!1s0x549e188a0e23298d:0xe96a55dc6ee16314!8m2!3d47.6573563!4d-117.4147831!15sCgtuOW5lIGJpc3Ryb1oNIgtuOW5lIGJpc3Ryb5IBDmdheV9uaWdodF9jbHVimgEkQ2hkRFNVaE5NRzluUzBWSlEwRm5TVU56Y1hOdU0zRlJSUkFC4AEA!16s%2Fg%2F1vzv3cvm?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
+      View on Google Maps
+    </a>
+  `,
+  },
+  {
+    id: "5",
+    isRecurring: true,
+    name: "Open Mic Night!",
+    location: "Spokane Comedy Club, Spokane WA",
+    date: "Wednesday",
+    lat: 47.657017,
+    lng: -117.4193719,
+    details: `
+      Every Wednesday, A night with professional and first-time comedians. Free admission. Happy hour all night. 
+      Sign-up for comedians available at <a href="https://www.barkentertainment.com/open-mic" target="_blank" style="text-decoration: underline; color: blue;">openmicer.com</a>. 
+      <a href="https://www.google.com/maps/place/Spokane+Comedy+Club/@47.657017,-117.4193719,17z/data=!3m1!4b1!4m6!3m5!1s0x549e1861e8e0198d:0xba09c4ee88e9b25e!8m2!3d47.657017!4d-117.416797!16s%2Fg%2F11cm6j1zpw?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
+    `,
+  },
+  {
+    id: "6",
+    isRecurring: true,
+    name: "Open Mic Night..",
+    location: "Tervan Tavern, 411 Cedar St, Sandpoint ID",
+    date: "Wednesday",
+    lat: 48.2759385,
+    lng: -116.6349728,
+    details: `
+      Open Mic Night. Bring your talent in front of a live audience with a chill vibe. Be it song, instrument, comedy, improv, or magic, come show it off. Hosted by the Tervan Tavern, 411 Cedar St. starting at 6:00(ish) p.m. on Wednesdays.
+      Visit <a href="https://tervantavern.com/" target="_blank" style="text-decoration: underline; color: blue;">Tervan Tavern</a> for more info.
+      <a href="https://www.google.com/maps/dir//411+Cedar+St,+Sandpoint,+ID+83864/@48.2759385,-116.6349728,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x5363d6c8c06638a5:0x9a6ea93138ab0076!2m2!1d-116.5525742!2d48.2759868?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
+    `,
+  },
+  {
+    id: "7",
+    isRecurring: true,
+    name: "Open Mic Stand Up Comedy!",
+    location: "The Draft Zone, Post Falls ID",
+    date: "Thursday",
+    lat: 47.7057509,
+    lng: -117.0270137,
+    details: `
+      Weekly open mic stand-up comedy event. Every Thursday through 1/24. Free admission. 
+      Visit <a href="https://draftzonepf.com" target="_blank" style="text-decoration: underline; color: blue;">Draft Zone </a> for more info. <a href="https://www.google.com/maps/place/The+Draft+Zone/@47.7057509,-117.0270137,15z/data=!3m1!4b1!4m6!3m5!1s0x5361ddbc4da8868b:0xc1f752f8c519f0f4!8m2!3d47.7057379!4d-117.0085598!16s%2Fg%2F11gy3bsw8c?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
+    `,
+  },
+  {
+    id: "8",
+    isRecurring: true,
+    name: "Quincy Belt Tournament of Champions!",
+    location: "The Draft Zone, Post Falls ID",
+    date: "Thursday",
+    lat: 47.7057509,
+    lng: -117.0270137,
+    details: `Post Falls, ID. Entry: Online/In Person. Free entry, no content restrictions. 
+    Qualify by winning the "Quincy Belt" at the open mic (Thursdays) or via video submission by 12/14. 
+    Semifinals: 2/3/24, 3/2/24, 4/6/24, 5/4/24. Finals: 6/1/24. Prizes: 1st - $1000, 2nd - $500, 3rd/4th - $250 each. 
+    Email: jaybergcomedy@gmail.com for details and entries. visit <a href="https://draftzonepf.com" target="_blank" style="text-decoration: underline; color: blue;">Draft Zone </a> for more info. <a href="https://www.google.com/maps/place/The+Draft+Zone/@47.7057509,-117.0270137,15z/data=!3m1!4b1!4m6!3m5!1s0x5361ddbc4da8868b:0xc1f752f8c519f0f4!8m2!3d47.7057379!4d-117.0085598!16s%2Fg%2F11gy3bsw8c?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.`,
+  },
+  {
+    id: "9",
     isRecurring: true,
     name: "LITTLE NEVADA COMEDY OPEN MIC",
     location: "Little Nevada Restaurant and Lounge Spokane WA",
@@ -211,7 +196,7 @@ const mockEvents: Event[] = [
   `,
   },
   {
-    id: "11",
+    id: "10",
     isRecurring: true,
     name: "3RD THURSDAY COMEDY OPEN MIC",
     location: "Fox Hole Bar and Grill Medical Lake WA",
@@ -221,6 +206,22 @@ const mockEvents: Event[] = [
     details: `
     Signup in person or DM starts at 7:00pm sharpHappens on the 3RD THURSDAY OF THE MONTH. It is an open mic with a 20-min feature act at the end. Comics get the light when they have 1 min remaining. If you're looking to perform at the Fox Hole and DZ, let Chris know so he can put you towards the front of the lineup. Every comic that performs gets an even cut of tips @ the end of the show, so it pays (at least a little bit) to be (at least a little bit) funny. <a href="https://www.facebook.com/thefoxholemedicallake/"> foxholemedicallake Facebook</a> 
     <a href="https://www.google.com/maps/place/The+Foxhole+Bar+and+Grill/@47.5725708,-117.6844563,17z/data=!3m1!4b1!4m6!3m5!1s0x549e6b079450a8a7:0x706aa4e325b9b6cd!8m2!3d47.5725708!4d-117.6818814!16s%2Fg%2F11syxzl8hk?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
+      View on Google Maps
+    </a>
+  `,
+  },
+  {
+    id: "11",
+    isRecurring: true,
+    name: "Open Mic Night at The Grain Shed",
+    location: "The Grain Shed Taproom Spokane WA",
+    date: "Friday",
+    lat: 47.6561077,
+    lng: -117.4348802,
+    details: `
+    Hosted by Anthony Singleton. Open Mic Night for music and comedy. 
+    Every Friday from 5:30 PM to 8:30ish PM. All ages welcome. Clean mic. Free admission. 
+    <a href="https://www.google.com/maps/place/The+Grain+Shed+Taproom/@47.6561077,-117.4348802,17z/data=!3m2!4b1!5s0x549e18680a2601e7:0x1a13f3af47308d34!4m6!3m5!1s0x549e194b26b6f1a1:0x6df1cdc8cd28c935!8m2!3d47.6561041!4d-117.4323053!16s%2Fg%2F11thk6c6yx?entry=ttu" ttarget="_blank" style="text-decoration: underline; color: green;">
       View on Google Maps
     </a>
   `,
@@ -243,15 +244,14 @@ const mockEvents: Event[] = [
   {
     id: "13",
     isRecurring: true,
-    name: "Open Mic Night..",
-    location: "Tervan Tavern, 411 Cedar St, Sandpoint ID",
-    date: "Wednesday",
-    lat: 48.2759385,
-    lng: -116.6349728,
+    name: "Stand Up Comedy Open Mic",
+    location: "Spikes on 718 E Francis Spokane WA",
+    date: "Saturday",
+    lat: 47.7147076,
+    lng: -117.4008385,
     details: `
-      Open Mic Night. Bring your talent in front of a live audience with a chill vibe. Be it song, instrument, comedy, improv, or magic, come show it off. Hosted by the Tervan Tavern, 411 Cedar St. starting at 6:00(ish) p.m. on Wednesdays.
-      Visit <a href="https://tervantavern.com/" target="_blank" style="text-decoration: underline; color: blue;">Tervan Tavern</a> for more info.
-      <a href="https://www.google.com/maps/dir//411+Cedar+St,+Sandpoint,+ID+83864/@48.2759385,-116.6349728,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x5363d6c8c06638a5:0x9a6ea93138ab0076!2m2!1d-116.5525742!2d48.2759868?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
+      Hosted by Anthony Singleton. Every Saturday at 7:00 PM. For more information follow @AnthonySingleton on social media. 
+      <a href="https://www.google.com/maps/place/Spike's+Spokane/@47.7147076,-117.4008385,17z/data=!3m1!4b1!4m6!3m5!1s0x549e1eb3e673dd89:0xb506914f6e09b6e2!8m2!3d47.714704!4d-117.3982636!16s%2Fg%2F11_fkyq8p?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
     `,
   },
 ];
@@ -494,7 +494,7 @@ const EventsPage = () => {
           <option value="Miami FL">Miami, FL</option>
           <option value="Maui HA">Maui, HA</option>
           <option value="Boise ID">Boise, ID</option>
-          <option value="Coeur D'Alene ID">Coeur D'Alene, ID</option>
+          <option value="Coeur D&#39;Alene ID">Coeur D&#39;Alene, ID</option>
           <option value="Hayden ID">Hayden, ID</option>
           <option value="Moscow ID">Moscow, ID</option>
           <option value="Post Falls ID">Post Falls, ID</option>
