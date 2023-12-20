@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import Link from "next/link";
+import Image from "next/image";
 import AuthModal from "./authModal";
 import { auth } from "../../../firebase.config";
 import {
-  HomeModernIcon,
   CalendarDaysIcon,
   InformationCircleIcon,
   UserCircleIcon,
@@ -17,6 +17,7 @@ import {
 import SearchBar from "./searchBar";
 import { useCity } from "./cityContext";
 import { useRouter } from "next/navigation";
+import micFinder from "src/app/micFinder.webp";
 
 export default function Header() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -62,13 +63,19 @@ export default function Header() {
         <nav className="container flex justify-between items-center p-1">
           <Link
             href="/"
-            className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+            className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
           >
-            <HomeModernIcon className="h-7 w-7" />
+            <Image
+              src={micFinder}
+              alt="MicFinder"
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
             <span className="hidden md:inline-block">MicFinder</span>
           </Link>
           <SearchBar onSearch={handleSearch} />
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
             <button onClick={toggleMenu}>
               {isMenuOpen ? (
                 <XMarkIcon className="h-6 w-6" />
@@ -83,7 +90,7 @@ export default function Header() {
           >
             <Link
               href="/events"
-              className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+              className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
             >
               <CalendarDaysIcon className="h-5 w-5" />
               <span className="hidden md:inline">Events</span>
@@ -92,7 +99,7 @@ export default function Header() {
             {!isUserSignedIn && (
               <button
                 onClick={toggleAuthModal}
-                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
               >
                 <UserCircleIcon className="h-5 w-5" />
                 <span className="hidden md:inline">Sign In/Up</span>
@@ -102,7 +109,7 @@ export default function Header() {
             {isUserSignedIn && (
               <Link
                 href="/user"
-                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
               >
                 <UserIcon className="h-5 w-5" />
                 <span className="hidden md:inline">Profile</span>
@@ -111,7 +118,7 @@ export default function Header() {
 
             <Link
               href="/about"
-              className="neu-button px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300"
+              className="neu-button px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
             >
               <InformationCircleIcon className="h-5 w-5" />
               <span className="hidden md:inline">About</span>
