@@ -67,7 +67,7 @@ export default function Header() {
           >
             <Image
               src={micFinder}
-              alt="MicFinder"
+              alt="MicFinder Logo"
               width={50}
               height={50}
               className="rounded-full"
