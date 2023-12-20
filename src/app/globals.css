@@ -97,7 +97,6 @@ div {
 }
 
 .event-item p::before {
-  content: "📍 ";
   @apply text-lg align-middle;
 }
 

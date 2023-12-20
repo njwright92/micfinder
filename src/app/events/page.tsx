@@ -72,13 +72,12 @@ const mockEvents: Event[] = [
     isRecurring: true,
     name: "Open Mic",
     location:
-      "The Goody Bar and Grill, 8712 E SPRAGUE AVE #1000, Spokane Valley WA",
+      "The Goody Bar and Grill 8712 E SPRAGUE AVE #1000, Spokane Valley WA",
     date: "Monday",
-    lat: 47.6567246,
+    lat: 47.656721,
     lng: -117.2902616,
     details: `
-      Hosted by Anthony Singleton, welcoming all talents including musicians, comedians, spoken word, and improv. 
-      Contact: 509-557-3999 or visit <a href="https://www.lyyv.tv" target="_blank" style="text-decoration: underline; color: blue;">lyyv.tv</a> for more info. 
+      Every other monday. Hosted by Anthony Singleton, welcoming all talents including musicians, comedians, spoken word, and improv. Contact: 509-557-3999 or visit <a href="https://www.lyyv.tv" target="_blank" style="text-decoration: underline; color: blue;">lyyv.tv</a> for more info. 
       <a href="https://www.google.com/maps/place/The+Goody+Bar+And+Grill/@47.6567246,-117.2902616,17z/data=!3m1!4b1!4m6!3m5!1s0x549e21c949eed8cb:0xbd4d1292f17e8c43!8m2!3d47.656721!4d-117.2876867!16s%2Fg%2F1trrcxqj?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
     `,
   },
@@ -88,8 +87,8 @@ const mockEvents: Event[] = [
     name: "New Talent Tuesday!",
     location: "Spokane Comedy Club, Spokane WA",
     date: "Tuesday",
-    lat: 47.657017,
-    lng: -117.4193719,
+    lat: 47.65703,
+    lng: -117.4352294,
     details: `
       Every Tuesday, Featuring: Amateur and Professional comedians trying out new material. Free admission. Shows starting at 9:30pm or later are 21+, earlier shows are 18+ with valid ID. 
       Visit <a href="https://www.spokanecomedyclub.com/" target="_blank" style="text-decoration: underline; color: blue;">Spokane Comedy Club</a> for more info. 
@@ -100,7 +99,7 @@ const mockEvents: Event[] = [
     id: "3",
     isRecurring: true,
     name: "T'S ON A TUESDAY",
-    location: "T's Lounge Spokane WA",
+    location: "T's Lounge, Spokane WA",
     date: "Tuesday",
     lat: 47.6636398,
     lng: -117.4294504,
@@ -115,7 +114,7 @@ const mockEvents: Event[] = [
     id: "4",
     isRecurring: true,
     name: "QUEER COMEDY NIGHT",
-    location: "nYne Bar & Bistro Spokane WA",
+    location: "nYne Bar & Bistro, Spokane WA",
     date: "Tuesday",
     lat: 47.6573563,
     lng: -117.4147831,
@@ -132,8 +131,8 @@ const mockEvents: Event[] = [
     name: "Open Mic Night!",
     location: "Spokane Comedy Club, Spokane WA",
     date: "Wednesday",
-    lat: 47.657017,
-    lng: -117.4193719,
+    lat: 47.65703,
+    lng: -117.4352294,
     details: `
       Every Wednesday, A night with professional and first-time comedians. Free admission. Happy hour all night. 
       Sign-up for comedians available at <a href="https://www.barkentertainment.com/open-mic" target="_blank" style="text-decoration: underline; color: blue;">openmicer.com</a>. 
@@ -144,7 +143,7 @@ const mockEvents: Event[] = [
     id: "6",
     isRecurring: true,
     name: "Open Mic Night..",
-    location: "Tervan Tavern, 411 Cedar St, Sandpoint ID",
+    location: "Tervan Tavern 411 Cedar St, Sandpoint ID",
     date: "Wednesday",
     lat: 48.2759385,
     lng: -116.6349728,
@@ -184,7 +183,7 @@ const mockEvents: Event[] = [
     id: "9",
     isRecurring: true,
     name: "LITTLE NEVADA COMEDY OPEN MIC",
-    location: "Little Nevada Restaurant and Lounge Spokane WA",
+    location: "Little Nevada Restaurant and Lounge, Spokane WA",
     date: "Thursday",
     lat: 47.7015451,
     lng: -117.3999719,
@@ -199,7 +198,7 @@ const mockEvents: Event[] = [
     id: "10",
     isRecurring: true,
     name: "3RD THURSDAY COMEDY OPEN MIC",
-    location: "Fox Hole Bar and Grill Medical Lake WA",
+    location: "Fox Hole Bar and Grill, Medical Lake WA",
     date: "Thursday",
     lat: 47.5725708,
     lng: -117.6844563,
@@ -214,7 +213,7 @@ const mockEvents: Event[] = [
     id: "11",
     isRecurring: true,
     name: "Open Mic Night at The Grain Shed",
-    location: "The Grain Shed Taproom Spokane WA",
+    location: "The Grain Shed Taproom, Spokane WA",
     date: "Friday",
     lat: 47.6561077,
     lng: -117.4348802,
@@ -230,7 +229,7 @@ const mockEvents: Event[] = [
     id: "12",
     isRecurring: true,
     name: "FRIDAY FUNNIES",
-    location: "The Garland Drinkery Spokane WA",
+    location: "The Garland Drinkery, Spokane WA",
     date: "Friday",
     lat: 47.693665,
     lng: -117.4268169,
@@ -245,7 +244,7 @@ const mockEvents: Event[] = [
     id: "13",
     isRecurring: true,
     name: "Stand Up Comedy Open Mic",
-    location: "Spikes on 718 E Francis Spokane WA",
+    location: "Spikes on 718 E Francis, Spokane WA",
     date: "Saturday",
     lat: 47.7147076,
     lng: -117.4008385,
@@ -265,6 +264,42 @@ const EventsPage = () => {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
   const [allEvents, setAllEvents] = useState<Event[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterCity, setFilterCity] = useState("All Cities");
+
+  const uniqueCities = useMemo(() => {
+    return Array.from(
+      new Set(
+        allEvents
+          .map((event) => {
+            const locationParts = event.location.split(",");
+            if (locationParts.length > 1) {
+              return locationParts[1].trim();
+            }
+            return ""; // Return an empty string if there's no second part
+          })
+          .filter((city) => city !== "")
+      )
+    );
+  }, [allEvents]);
+
+  const handleCityFilterChange = useCallback(
+    (city: string) => {
+      setFilterCity(city);
+    },
+    [setFilterCity]
+  ); // If setFilterCity doesn't change, you can omit it from the dependencies array
+
+  // Filter events based on the selected city
+  const eventsByCity = useMemo(() => {
+    return filterCity === "All Cities"
+      ? allEvents
+      : allEvents.filter((event) => {
+          const locationParts = event.location.split(",");
+          return (
+            locationParts.length > 1 && locationParts[1].trim() === filterCity
+          );
+        });
+  }, [filterCity, allEvents]);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -337,7 +372,7 @@ const EventsPage = () => {
         return diffInDays % 14 < 7;
       }
 
-      if (event.id === "11") {
+      if (event.id === "10") {
         const thirdThursday = new Date(
           selectedDate.getFullYear(),
           selectedDate.getMonth(),
@@ -354,7 +389,7 @@ const EventsPage = () => {
         return selectedDate.getDate() === thirdThursday.getDate();
       }
 
-      if (event.id === "5") {
+      if (event.id === "1") {
         const weekOfMonth = Math.floor((selectedDate.getDate() - 1) / 7) + 1;
         return weekOfMonth === 2 || weekOfMonth === 4;
       }
@@ -437,30 +472,6 @@ const EventsPage = () => {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const querySnapshot = await getDocs(collection(db, "events"));
-      const fetchedEvents = querySnapshot.docs.map((doc) => {
-        const eventData = doc.data();
-
-        eventData.date = eventData.date.toDate();
-        return {
-          id: doc.id,
-          ...eventData,
-        };
-      }) as Event[];
-
-      setEvents((prevEvents) => {
-        const newEvents = fetchedEvents.filter(
-          (fe) => !prevEvents.some((pe) => pe.id === fe.id)
-        );
-        return [...prevEvents, ...newEvents];
-      });
-    };
-
-    fetchEvents();
-  }, []);
-
   const MemoizedGoogleMap = React.memo(GoogleMap);
   const MemoizedEventForm = React.memo(EventForm);
 
@@ -540,7 +551,8 @@ const EventsPage = () => {
             filteredEvents.map((event) => (
               <div key={event.id} className="event-item">
                 <h3 className="text-lg font-semibold">{event.name}</h3>
-                <p className="font-bold">Location: {event.location}</p>
+                <p className="font-bold">📅 Date: {event.date}</p>
+                <p className="font-bold">📍 Location: {event.location}</p>
                 <div className="details font-bold">
                   <span className="details-label">ℹ️ Details:</span>
                   <div dangerouslySetInnerHTML={{ __html: event.details }} />
@@ -570,18 +582,40 @@ const EventsPage = () => {
           />
         </div>
       </div>
+
       <div className="events-card">
+        <div className="city-filter flex flex-wrap">
+          <br />
+          <br />
+          <button
+            onClick={() => handleCityFilterChange("All Cities")}
+            className="city-button m-1 underline text-red-700 font-bold text-lg hover:text-red-500 flex-grow"
+          >
+            All Cities
+          </button>
+          {uniqueCities.map((city) => (
+            <button
+              key={city}
+              onClick={() => handleCityFilterChange(city)}
+              className="city-button m-1 underline text-red-800 hover:text-red-500 flex-grow"
+            >
+              {city}
+            </button>
+          ))}
+        </div>
         <h2
           className="title text-center"
           style={{ borderBottom: "0.15rem solid #005eff" }}
         >
-          All Events:
+          {filterCity === "All Cities"
+            ? "All Events"
+            : `All Events in ${filterCity}`}
         </h2>
-        {allEvents.map((event) => (
+        {eventsByCity.map((event) => (
           <div key={event.id} className="event-item">
             <h3 className="text-lg font-semibold">{event.name}</h3>
-            <p className="font-bold">Date: {event.date}</p>
-            <p className="font-bold">Location: {event.location}</p>
+            <p className="font-bold">📅 Date: {event.date}</p>
+            <p className="font-bold">📍 Location: {event.location}</p>
             <div className="details font-bold">
               <span className="details-label">ℹ️ Details:</span>
               <div dangerouslySetInnerHTML={{ __html: event.details }} />
