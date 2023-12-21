@@ -59,8 +59,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-red-900 text-white p-3 mx-auto sticky top-0">
-        <nav className="container flex justify-between items-center p-1">
+      <header className="bg-red-900 text-white p-2 sticky top-0">
+        <nav className="container flex justify-between items-center">
           <Link
             href="/"
             className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
@@ -74,54 +74,62 @@ export default function Header() {
             />
             <span className="hidden md:inline-block">MicFinder</span>
           </Link>
+
           <SearchBar onSearch={handleSearch} />
-          <div className="md:hidden flex items-center">
+
+          <div className="flex ml-auto">
             <button onClick={toggleMenu}>
-              {isMenuOpen ? (
-                <XMarkIcon className="h-6 w-6" />
-              ) : (
-                <Bars3Icon className="h-6 w-6" />
-              )}
+              <Bars3Icon className="h-6 w-6" />
             </button>
           </div>
 
           <div
-            className={`flex gap-2 ${isMenuOpen ? "flex" : "hidden"} md:flex`}
+            className={`absolute top-0 right-0 h-full w-1/4 bg-black bg-opacity-75 z-50 transform ${
+              isMenuOpen ? "translate-x-0" : "translate-x-full"
+            } transition-transform duration-300 ease-in-out flex flex-col gap-2 p-2`}
           >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="self-end text-white"
+            >
+              <XMarkIcon className="h-6 w-6" />
+            </button>
+
             <Link
               href="/events"
-              className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
+              className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center justify-center"
             >
               <CalendarDaysIcon className="h-5 w-5" />
-              <span className="hidden md:inline">Events</span>
+              <span>Events</span>
             </Link>
 
             {!isUserSignedIn && (
               <button
                 onClick={toggleAuthModal}
-                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
+                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center justify-center"
               >
                 <UserCircleIcon className="h-5 w-5" />
-                <span className="hidden md:inline">Sign In/Up</span>
+                <span>Sign In/Up</span>
               </button>
             )}
 
             {isUserSignedIn && (
               <Link
                 href="/user"
-                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
+                className="neu-button text-white px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center justify-center"
               >
                 <UserIcon className="h-5 w-5" />
-                <span className="hidden md:inline">Profile</span>
+                <span>Profile</span>
               </Link>
             )}
 
             <Link
               href="/about"
-              className="neu-button px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center"
+              className="neu-button px-2 py-1 rounded-lg shadow-md hover:shadow-inner transition duration-300 flex items-center justify-center"
             >
               <InformationCircleIcon className="h-5 w-5" />
-              <span className="hidden md:inline">About</span>
+              <span>About</span>
             </Link>
           </div>
         </nav>

@@ -16,7 +16,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative ml-auto">
       <button
         onClick={() => setInputVisible(!isInputVisible)}
         className="px-2 py-1 bg-white text-black rounded-full"
@@ -28,18 +28,18 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
       {isInputVisible && (
         <form
           onSubmit={handleSearch}
-          className="flex items-center absolute top-full mt-1 left-0"
+          className="absolute top-full mt-1 left-0 flex flex-col sm:flex-row items-center w-full"
         >
           <input
             type="text"
             placeholder="Search city to view events.."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="px-2 py-1 rounded-l-lg text-black w-64"
+            className="px-2 py-1 rounded text-black w-64"
           />
           <button
             type="submit"
-            className=" ml-1 px-2 py-1 bg-white text-black rounded"
+            className="mt-1 sm:mt-0 sm:ml-1 px-2 py-1 bg-white text-black rounded"
           >
             Search
           </button>
