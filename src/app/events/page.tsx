@@ -253,6 +253,18 @@ const mockEvents: Event[] = [
       <a href="https://www.google.com/maps/place/Spike's+Spokane/@47.7147076,-117.4008385,17z/data=!3m1!4b1!4m6!3m5!1s0x549e1eb3e673dd89:0xb506914f6e09b6e2!8m2!3d47.714704!4d-117.3982636!16s%2Fg%2F11_fkyq8p?entry=ttu" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
     `,
   },
+  {
+    id: "14",
+    isRecurring: true,
+    name: "Open Mic Night at Emerge",
+    location: "Emerge downtown, Coeur D'Alene ID",
+    date: "Thursday",
+    lat: 47.6742323,
+    lng: -116.7842855,
+    details: `
+      Every third Thursday of the month - Singers, Songwriters, Poets, Spoken Word & Monologues welcome. All ages welcome.\n\nWe just ask that you be respectful of others in the space and are ready to experience a wide variety of performances. You may be introduced to a new form of expression you never even knew you would like!\n\nOpen Mic is sponsored by Emerge CDA and North Idaho Pride Alliance.\n\nFREE. RSVP is recommended, but not required. <a href="https://emergecda.com/" target="_blank" style="text-decoration: underline; color: blue;">Visit website</a>. <a href="https://www.google.com/maps/place/Emerge/@47.6742323,-116.7842855,15z/data=!4m2!3m1!1s0x0:0xfe97b08bde5da689?sa=X&ved=2ahUKEwjRtISQ86ODAxV0MjQIHcuOBYoQ_BJ6BAgQEAA" target="_blank" style="text-decoration: underline; color: green;">View on Google Maps</a>.
+    `,
+  },
 ];
 
 const EventsPage = () => {
@@ -372,7 +384,7 @@ const EventsPage = () => {
         return diffInDays % 14 < 7;
       }
 
-      if (event.id === "10") {
+      if (event.id === "10" || event.id === "14") {
         const thirdThursday = new Date(
           selectedDate.getFullYear(),
           selectedDate.getMonth(),

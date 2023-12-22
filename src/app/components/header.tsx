@@ -59,7 +59,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-red-900 text-white p-2 sticky top-0">
+      <header className="bg-red-900 text-white p-2 sticky top-0 z-50">
         <nav className="container flex justify-between items-center">
           <Link
             href="/"
@@ -79,12 +79,12 @@ export default function Header() {
 
           <div className="flex ml-auto">
             <button onClick={toggleMenu}>
-              <Bars3Icon className="h-6 w-6" />
+              <Bars3Icon className="h-8 w-8" />
             </button>
           </div>
 
           <div
-            className={`absolute top-0 right-0 h-full w-1/4 bg-black bg-opacity-75 z-50 transform ${
+            className={`absolute top-0 right-0 h-screen w-1/4 bg-black bg-opacity-75 z-50 transform ${
               isMenuOpen ? "translate-x-0" : "translate-x-full"
             } transition-transform duration-300 ease-in-out flex flex-col gap-2 p-2`}
           >
