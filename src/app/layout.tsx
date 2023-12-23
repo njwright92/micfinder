@@ -21,21 +21,17 @@ export default function RootLayout({
     <CityProvider>
       <EventProvider>
         <html lang="en">
-          <Head>
-            <script
-              async
-              src="https://www.googletagmanager.com/gtag/js?id=G-65JYZXX34C"
-            ></script>
-            <Script src="https://www.googletagmanager.com/gtag/js?id=G-65JYZXX34C" />
-            <Script id="google-analytics">
-              {`
+          <Script src="https://www.googletagmanager.com/gtag/js?id=G-65JYZXX34C" />
+          <Script id="google-analytics">
+            {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
  
           gtag('config', 'G-65JYZXX34C');
         `}
-            </Script>
+          </Script>
+          <Head>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
             <link
