@@ -34,7 +34,7 @@ export default function Footer() {
           <p className=" text-md mb-2">💌 contact@openmicfinder.com</p>
           <a
             href="mailto:nitronate@gmail.com"
-            className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mt-2 rounded"
+            className="neu-button hover:bg-blue-900 text-white font-bold py-2 px-4 mt-2 rounded"
           >
             Email Me
           </a>
@@ -48,7 +48,7 @@ export default function Footer() {
           </p>
           <a
             href="https://comedify-54274.web.app/"
-            className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4  mt-2 rounded"
+            className="neu-button hover:bg-blue-900 text-white font-bold py-2 px-4  mt-2 rounded"
           >
             Visit Comedify 😃
           </a>

@@ -86,7 +86,7 @@ const EventForm: React.FC = () => {
   return (
     <>
       <button
-        className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out focus:outline-none focus:shadow-outline mt-4"
+        className="neu-button hover:bg-green-900 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out focus:outline-none focus:shadow-outline mt-4"
         onClick={() => setShowModal(true)}
       >
         Add Event

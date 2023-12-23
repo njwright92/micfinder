@@ -39,7 +39,7 @@ export default function HomePage() {
         <p className="mt-2">
           <a
             href="mailto:nitronate@gmail.com"
-            className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mt-4 rounded"
+            className="neu-button hover:bg-blue-900 text-white font-bold py-2 px-4 mt-4 rounded"
           >
             Contact me with questions or issues
           </a>
@@ -64,7 +64,7 @@ export default function HomePage() {
         </p>
         <a
           href="https://comedify-54274.web.app/"
-          className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mt-4 rounded"
+          className="neu-button hover:bg-green-900 text-white font-bold py-2 px-4 mt-4 rounded"
         >
           Visit Comedify 😃
         </a>

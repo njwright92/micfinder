@@ -84,6 +84,7 @@ export default function Header() {
           <div className="flex">
             <button onClick={toggleMenu}>
               <Bars3Icon className="h-8 w-8" />
+              <span className="sr-only">Toggle menu</span>
             </button>
           </div>
 
@@ -98,6 +99,7 @@ export default function Header() {
               className="self-end text-white"
             >
               <XMarkIcon className="h-6 w-6" />
+              <span className="sr-only">Close menu</span>
             </button>
 
             <Link
