@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import Head from "next/head";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -21,6 +22,20 @@ export default function RootLayout({
       <EventProvider>
         <html lang="en">
           <Head>
+            <script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=G-65JYZXX34C"
+            ></script>
+            <Script src="https://www.googletagmanager.com/gtag/js?id=G-65JYZXX34C" />
+            <Script id="google-analytics">
+              {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-65JYZXX34C');
+        `}
+            </Script>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
             <link

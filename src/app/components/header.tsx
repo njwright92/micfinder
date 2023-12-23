@@ -72,12 +72,16 @@ export default function Header() {
               height={50}
               className="rounded-full"
             />
-            <span className="hidden md:inline-block">MicFinder</span>
+            <span className="hidden md:inline-block">Home</span>
           </Link>
+
+          <div className="micFinderTitle">
+            <h1>Mic Finder!</h1>
+          </div>
 
           <SearchBar onSearch={handleSearch} />
 
-          <div className="flex ml-auto">
+          <div className="flex">
             <button onClick={toggleMenu}>
               <Bars3Icon className="h-8 w-8" />
             </button>

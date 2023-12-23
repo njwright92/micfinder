@@ -208,3 +208,17 @@ div {
   padding: 1rem;
   border: 0.125rem solid white;
 }
+
+.micFinderTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.25rem;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .micFinderTitle {
+    font-size: 3rem;
+  }
+}

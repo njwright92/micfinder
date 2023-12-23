@@ -16,7 +16,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   };
 
   return (
-    <div className="relative ml-auto">
+    <div className="relative">
       <button
         onClick={() => setInputVisible(!isInputVisible)}
         className="px-2 py-1 bg-white text-black rounded-full"
